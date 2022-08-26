@@ -17,8 +17,8 @@ const ListItem = ({data}) =>{
                     <h3>{data.title}</h3>
                 </div>
             </div>
-            <button className={"cart-add"}>
-                <span>Add to cart</span>
+            <button className={"cart-add "} >
+                <span className={"cart-add "}>Add to cart</span>
                 <img src={AddToCartIcon} alt="Cart Icon" width={"20"} height={"20"}></img>
             </button>
         </div>

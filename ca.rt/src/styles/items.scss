@@ -9,6 +9,10 @@
         flex-wrap: wrap;
     }
 }
+button.cart-add:hover{
+    color: green;
+    background-color: bisque;
+}
 
 .item-card {
     cursor: pointer;
@@ -66,4 +70,5 @@ button.cart-add {
     align-items: center;
     width: 100%;
     justify-content: space-between;
+    background-color:  #17a2b8;
 }
