@@ -10,8 +10,13 @@ function App() {
           Hello World!
         </p>
       </header>
-      <ListItem>{/*  //all custom components start with Capital letters */}
-          {/*  Can't use xml in this area -  Hello List */}
+      
+      <ListItem data={{
+        discountedPrice: 340,
+        price: 450,
+        title: "Title of the item",
+        thumbnail: "cart.png"
+      }}> {/*  Can't use xml in this area -  Hello List */}
       </ListItem>
 
     </div>
