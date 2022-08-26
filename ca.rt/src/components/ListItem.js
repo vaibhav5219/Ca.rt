@@ -1,18 +1,24 @@
 import AddToCartIcon from "../assets/icons/cart.png"
 
 const ListItem = () =>{
+    const data = {
+        discountedPrice: 340,
+        price: 450,
+        title: "Title of the item",
+        thumbnail: "cart.png"
+    }
     return (
         <div className={"item-card"}>
-            <img src="/assets/cart.png" alt="some title" ></img>
+            <img className={"img-fluid"} src={`/assets/${data.thumbnail}`}  alt="some title" ></img> {/*  src={"/assets/"+data.thumbnail} */}
             <div>
                 <div>
-                    <span>₹340</span>
+                    <span>₹{data.discountedPrice}</span>
                     <small>
-                        <strike>₹450</strike>
+                        <strike>₹{data.price}</strike>
                     </small>
                 </div>
                 <div className={"title"}>
-                    <h3>Title of the List Item</h3>
+                    <h3>{data.title}</h3>
                 </div>
             </div>
             <button className={"cart-add"}>
