@@ -1,4 +1,5 @@
-import AddToCartIcon from "../assets/icons/cart.png"
+//import AddToCartIcon from "../assets/icons/cart.png"
+import AddToCartIcon from "../../assets/icons/cart.png"
 
 const ListItem = ({data}) =>{
     
@@ -21,7 +22,7 @@ const ListItem = ({data}) =>{
                 <img src={AddToCartIcon} alt="Cart Icon" width={"20"} height={"20"}></img>
             </button>
         </div>
-    );
+    ); 
 }
 
 

@@ -1,24 +1,12 @@
 import './App.css';
-import './components/ListItem'
-import ListItem from './components/ListItem';
+import './components/ListItems/ListItem'
+//import ListItem from './components/ListItems/ListItem';
+import Products from './components/Products/Products';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Hello World!
-        </p>
-      </header>
-      
-      <ListItem data={{
-        discountedPrice: 340,
-        price: 450,
-        title: "Title of the item",
-        thumbnail: "cart.png"
-      }}> {/*  Can't use xml in this area -  Hello List */}
-      </ListItem>
-
+      <Products></Products>
     </div>
   );
 }
