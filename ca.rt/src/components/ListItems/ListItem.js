@@ -8,8 +8,11 @@ const ListItem = ({data}) =>{
     const [counter, setCounter] = useState(0);
 
     //const increaseCounterByOne = ()=> { setCounter: counter+1  };
-    //const decreaseCounterByOne = ()=> { this.setCounter= this.state.counter-1; };
-    
+    const increaseCounterByOne = ()=> { 
+        setCounter(counter => {
+            return (counter,counter+1)
+        }); 
+    };
 
     return (
         <div className={"item-card"}>
@@ -33,7 +36,7 @@ const ListItem = ({data}) =>{
             <div className={"cart-addon cart-add"}  >
                 <button onClick={() => setCounter( counter>0 ? counter - 1 :counter)}><span>-</span></button>
                 <span className={"counter"}>{counter} </span>
-                <button onClick={() => setCounter(counter + 1)}><span>+</span></button>
+                <button onClick={increaseCounterByOne}><span>+</span></button>
             </div>
         </div>
     ); 
