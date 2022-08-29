@@ -19,11 +19,6 @@ import { useState } from "react";
 // ]
 
 const Products = () => {
-    const[title, setTitle] = useState("");   //  title is a state variable and setTitle is function
-    const[price, setPrice] = useState(0);
-    const[discountPrice, setDiscountedPrice] = useState(0);
-    const[thumbnail, setThumbnail] = useState("");
-    
     const[item, setItems] = useState({
         id: 0,
         discountedPrice: 340,
@@ -34,55 +29,42 @@ const Products = () => {
 
     const submitForm = event =>{
         event.preventDefault();
-        console.log({
-            title:title,
-            price,
-            discountPrice,
-            thumbnail
-        });
-        if(discountPrice > price){
+        
+        if(item.discountedPrice > item.price){
             alert("Discounted price is not greater than actual price");
             return;
         }
-        setItems({
-            title,
-            price,
-            discountPrice,
-            thumbnail
-        });
+        
     }
 
     const handleTitle = (event) => {
-        setTitle(event.target.value);
         setItems({
             ...item,
             title: event.target.value
         });
     }
     const handlePrice = (event) => {
-        setPrice(price =>{
-            return (price, event.target.value);
-        });
         setItems({
-            ...price,
-            title: event.target.value
+            ...item,
+            price: event.target.value
         });
     }
     const handleDiscountedPrice = (event) => {
-        setDiscountedPrice(event.target.value);
         setItems({
-            ...discountPrice,
-            title: event.target.value
+            ...item,
+            discountedPrice: event.target.value
         });
     }
     const handleThumbnail = event => {
-        setThumbnail(event.target.value);
         setItems({
-            ...thumbnail,
-            title: event.target.value
+            ...item,
+            thumbnail: event.target.value
         });
     }
 
+    const handleInput = event =>{
+        console.log(event.target.value);
+    }
     return (
         <div>
             <div className="d-flex flex-column"></div>
@@ -92,19 +74,19 @@ const Products = () => {
                     <h2>Item card Details</h2>
                     <div className={"input-field row"}>
                         <label htmlFor={"title"}>Title</label>
-                        <input type="text" value={title} placeholder="Enter Title" onChange={handleTitle} required/>
+                        <input type="text" name="title" value={item.title} placeholder="Enter Title" onChange={handleInput} required/>
                     </div>
                     <div className={"input-field row"}>
                         <label htmlFor={"price"}>Price</label>
-                        <input type="number" value={price} placeholder="Enter Price" onChange={handlePrice} required/>
+                        <input type="number" name="price" value={item.price} placeholder="Enter Price" onChange={handleInput} required/>
                     </div>
                     <div className={"input-field row"}>
                         <label htmlFor={"discountPrice"}>Discounted Price</label>
-                        <input type="number" value={discountPrice} placeholder="Enter Discounted Price" onChange={handleDiscountedPrice} required/>
+                        <input type="number" name="discountedPrice" value={item.discountedPrice} placeholder="Enter Discounted Price" onChange={handleInput} required/>
                     </div>
                     <div className={"input-field row"}>
                         <label htmlFor={"thumbnail"}>Thumbnail</label>
-                        <input type="text" value={thumbnail} placeholder="Enter Thumbnail Name" onChange={handleThumbnail} required/>
+                        <input type="text" name="thumbnail" value={item.thumbnail} placeholder="Enter Thumbnail Name" onChange={handleInput} required/>
                     </div>
                     <div className={"input-field "}>
                         <button className="btn btn-info">Update</button>
