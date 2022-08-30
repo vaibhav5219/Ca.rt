@@ -1,23 +1,6 @@
 import ListItem from "../ListItems/ListItem";
 import { useState } from "react";
 
-// const items = [
-//     {
-//         id: 0,
-//         discountedPrice: 340,
-//         price: 450,
-//         title: "Title of the item",
-//         thumbnail: "cart.png"
-//     },
-//     {
-//         id: 1,
-//         discountedPrice: 340,
-//         price: 450,
-//         title: "Title of the item",
-//         thumbnail: "cart.png"
-//     }
-// ]
-
 const Products = () => {
     const[item, setItems] = useState({
         id: 0,
@@ -34,36 +17,13 @@ const Products = () => {
             alert("Discounted price is not greater than actual price");
             return;
         }
-        
     }
-
-    const handleTitle = (event) => {
-        setItems({
-            ...item,
-            title: event.target.value
-        });
-    }
-    const handlePrice = (event) => {
-        setItems({
-            ...item,
-            price: event.target.value
-        });
-    }
-    const handleDiscountedPrice = (event) => {
-        setItems({
-            ...item,
-            discountedPrice: event.target.value
-        });
-    }
-    const handleThumbnail = event => {
-        setItems({
-            ...item,
-            thumbnail: event.target.value
-        });
-    }
-
     const handleInput = event =>{
-        console.log(event.target.value);
+        console.log(event.target.value, event.target.name);
+        setItems({
+            ...item,   // sperad operator
+            [event.target.name]: event.target.value
+        });
     }
     return (
         <div>
