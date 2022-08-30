@@ -3,13 +3,22 @@ import { useState } from "react";
 import Form from "../Form/Form";
 
 const Products = () => {
-    const[item, setItems] = useState({
+    const[item, setItems] = useState([
+    {
         id: 0,
         discountedPrice: 340,
         price: 450,
         title: "Title of the item",
         thumbnail: "cart.png"
-    });
+    },
+    {
+        id: 1,
+        discountedPrice: 440,
+        price: 456,
+        title: "Title of the item",
+        thumbnail: "cart.png"
+    }
+]);
 
     const submitForm = event =>{
         event.preventDefault();
@@ -37,7 +46,13 @@ const Products = () => {
             </div>
             <div className={"product-list d-flex flex-column "}>
                 <div className={"product-list-wrapper  d-flex justify-content-center"}>
-                    <ListItem data={item}></ListItem>
+                    {/* <ListItem data={item}></ListItem> */}
+                    {
+                        item.map(it => {
+                            console.log(it);
+                            return (<ListItem data={it} />);
+                        })
+                    }
                 </div>
             </div >
             </div>
