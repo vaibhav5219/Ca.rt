@@ -1,5 +1,6 @@
 import ListItem from "../ListItems/ListItem";
 import { useState } from "react";
+import Form from "../Form/Form";
 
 const Products = () => {
     const[item, setItems] = useState({
@@ -17,6 +18,8 @@ const Products = () => {
             alert("Discounted price is not greater than actual price");
             return;
         }
+        // Communicate via child to parent =>    LIFTING THE STATE UP
+        console.log("Item Updated! ", item);
     }
     const handleInput = event =>{
         console.log(event.target.value, event.target.name);
@@ -30,36 +33,11 @@ const Products = () => {
             <div className="d-flex flex-column"></div>
             <div className={"form"}>
             <div className={"form1"}>
-                <form onSubmit={submitForm}>
-                    <h2>Item card Details</h2>
-                    <div className={"input-field row"}>
-                        <label htmlFor={"title"}>Title</label>
-                        <input type="text" name="title" value={item.title} placeholder="Enter Title" onChange={handleInput} required/>
-                    </div>
-                    <div className={"input-field row"}>
-                        <label htmlFor={"price"}>Price</label>
-                        <input type="number" name="price" value={item.price} placeholder="Enter Price" onChange={handleInput} required/>
-                    </div>
-                    <div className={"input-field row"}>
-                        <label htmlFor={"discountPrice"}>Discounted Price</label>
-                        <input type="number" name="discountedPrice" value={item.discountedPrice} placeholder="Enter Discounted Price" onChange={handleInput} required/>
-                    </div>
-                    <div className={"input-field row"}>
-                        <label htmlFor={"thumbnail"}>Thumbnail</label>
-                        <input type="text" name="thumbnail" value={item.thumbnail} placeholder="Enter Thumbnail Name" onChange={handleInput} required/>
-                    </div>
-                    <div className={"input-field "}>
-                        <button className="btn btn-info">Update</button>
-                    </div>
-                </form>
+                <Form item={item} onChangeInput={handleInput} onFormSubmission={submitForm}/>     
             </div>
             <div className={"product-list d-flex flex-column "}>
                 <div className={"product-list-wrapper  d-flex justify-content-center"}>
                     <ListItem data={item}></ListItem>
-                    {/* <ListItem data={items[1]}></ListItem>
-                    <ListItem data={items[0]}></ListItem>
-                    <ListItem data={items[1]}></ListItem> */}
-                    
                 </div>
             </div >
             </div>
