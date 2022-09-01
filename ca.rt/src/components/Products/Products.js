@@ -50,9 +50,10 @@ const Products = () => {
                     {
                         item.map(it => {
                             console.log(it);
-                            return (<ListItem data={it} />);
+                            return (<ListItem data={it} key={it.id} />);
                         })
                     }
+                    {/* {[<ListItem data={item[0]}/>, <ListItem data={item[1]}/>, <ListItem data={item[2]}/>, ]} */}
                 </div>
             </div >
             </div>
