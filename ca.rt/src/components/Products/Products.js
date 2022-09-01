@@ -3,34 +3,34 @@ import { useState } from "react";
 import Form from "../Form/Form";
 
 const Products = () => {
-    const[item, setItems] = useState([
-    {
-        id: 0,
-        discountedPrice: 340,
-        price: 450,
-        title: "Title of the item",
-        thumbnail: "cart.png"
-    },
-    {
-        id: 1,
-        discountedPrice: 440,
-        price: 456,
-        title: "Title of the item",
-        thumbnail: "cart.png"
-    }
-]);
+    const [item, setItems] = useState([
+        {
+            id: 0,
+            discountedPrice: 340,
+            price: 450,
+            title: "Title of the item",
+            thumbnail: "cart.png"
+        },
+        {
+            id: 1,
+            discountedPrice: 440,
+            price: 456,
+            title: "Title of the item",
+            thumbnail: "cart.png"
+        }
+    ]);
 
-    const submitForm = event =>{
+    const submitForm = event => {
         event.preventDefault();
-        
-        if(item.discountedPrice > item.price){
+
+        if (item.discountedPrice > item.price) {
             alert("Discounted price is not greater than actual price");
             return;
         }
         // Communicate via child to parent =>    LIFTING THE STATE UP
         console.log("Item Updated! ", item);
     }
-    const handleInput = event =>{
+    const handleInput = event => {
         console.log(event.target.value, event.target.name);
         setItems({
             ...item,   // sperad operator
@@ -40,10 +40,6 @@ const Products = () => {
     return (
         <div>
             <div className="d-flex flex-column"></div>
-            <div className={"form"}>
-            <div className={"form1"}>
-                <Form item={item} onChangeInput={handleInput} onFormSubmission={submitForm}/>     
-            </div>
             <div className={"product-list d-flex flex-column "}>
                 <div className={"product-list-wrapper  d-flex justify-content-center"}>
                     {/* <ListItem data={item}></ListItem> */}
@@ -56,7 +52,6 @@ const Products = () => {
                     {/* {[<ListItem data={item[0]}/>, <ListItem data={item[1]}/>, <ListItem data={item[2]}/>, ]} */}
                 </div>
             </div >
-            </div>
             <div className="d-flex flex-column"></div>
         </div>
     );
