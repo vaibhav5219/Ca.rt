@@ -1,4 +1,11 @@
-
+.navigationbar
+{
+  display: flex;
+}
+.cartItem{
+  position: absolute;
+  right: 200px;
+}
 
 .navbar-collapse {
     margin-left: 30%;
