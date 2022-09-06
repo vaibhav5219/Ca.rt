@@ -1,11 +1,39 @@
-import '~/~/Styles/User.scss'
+import { useState, useEffect } from "react";
 
-const user = () =>{
+const User = () =>{
+    const[isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(()=>{
+        const isTokenSet = localStorage.getItem("demo-token")
+        setIsLoggedIn(isTokenSet)
+        document.title = isTokenSet ? "Welcome User!" :"Please Log In"
+    },[isLoggedIn]);
+
+    const handleLogin = () =>{
+        setIsLoggedIn(isLoggedIn => {
+            localStorage.setItem("demo-token",true);
+            return (isLoggedIn, true);
+        });
+    };
+    const handleLogout = () =>{
+        localStorage.removeItem("demo-token");
+        setIsLoggedIn(isLoggedIn => {
+            return (isLoggedIn, false);
+        });
+    }
+
     return ( 
     <div id="User">
-        <h2 className="login">Please Login</h2>
+        <h2 className="login"> {isLoggedIn ? "Welcome User!" :  "Please Login" }</h2>
+        {
+            isLoggedIn
+            ?
+            <button onClick={handleLogout}>Log Out</button>
+            :
+            <button onClick={handleLogin}>Log In</button>
+        }
     </div>
     );
 }
 
-export default user;
+export default User;
