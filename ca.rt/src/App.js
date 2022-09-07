@@ -5,6 +5,7 @@ import Subheader from './components/Layouts/SubHeader.js'
 import Products from './components/Products/Products';
 import Timer from './components/Timer/Timer'
 import {useState} from 'react';
+import User from './components/User/User';
 
 function App() {
   const[toggle, setToggle] = useState(false);
@@ -15,6 +16,7 @@ function App() {
       <Subheader></Subheader>
       {toggle ? "Alternate Component" :  <Timer></Timer>}
       <button onClick={()=>setToggle(!toggle)}>Toggle</button>
+      <User></User>
       <Products></Products>
       
     </div>
