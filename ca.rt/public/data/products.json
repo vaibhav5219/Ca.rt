@@ -1,0 +1,92 @@
+{
+    "Items":[
+            {
+                "id": 0,
+                "discountedPrice": 340,
+                "price": 450,
+                "title": "Title of the item",
+                "thumbnail": "cart.png",
+                "description":"Hello I am description"
+            },
+            {
+                "id": 1,
+                "discountedPrice": 40,
+                "price": 30,
+                "title": "Title of the item",
+                "thumbnail": "cart.png",
+                "description":"Hello I am description"
+            },
+            {
+                "id": 2,
+                "discountedPrice": 540,
+                "price": 450,
+                "title": "Title of the item",
+                "thumbnail": "cart.png",
+                "description":"Hello I am description"
+            },
+            {
+                "id": 3,
+                "discountedPrice": 3340,
+                "price": 1450,
+                "title": "Title of the item",
+                "thumbnail": "cart.png",
+                "description":"Hello I am description"
+            },
+            {
+                "id": 4,
+                "discountedPrice": 440,
+                "price": 150,
+                "title": "Title of the item",
+                "thumbnail": "cart.png",
+                "description":"Hello I am description"
+            },
+            {
+                "id": 5,
+                "discountedPrice": 110,
+                "price": 100,
+                "title": "Title of the item",
+                "thumbnail": "cart.png",
+                "description":"Hello I am description"
+            },
+            {
+                "id": 6,
+                "discountedPrice": 100,
+                "price": 10,
+                "title": "Title of the item",
+                "thumbnail": "cart.png",
+                "description":"Hello I am description"
+            },
+            {
+                "id": 7,
+                "discountedPrice": 340,
+                "price": 450,
+                "title": "Title of the item",
+                "thumbnail": "cart.png",
+                "description":"Hello I am description"
+            },
+            {
+                "id": 8,
+                "discountedPrice": 9340,
+                "price": 3450,
+                "title": "Title of the item",
+                "thumbnail": "cart.png",
+                "description":"Hello I am description"
+            },
+            {
+                "id": 9,
+                "discountedPrice": 6340,
+                "price": 4450,
+                "title": "Title of the item",
+                "thumbnail": "cart.png",
+                "description":"Hello I am description"
+            },
+            {
+                "id": 10,
+                "discountedPrice": 5340,
+                "price": 4450,
+                "title": "Title of the item",
+                "thumbnail": "cart.png",
+                "description":"Hello I am description"
+            }
+    ]
+}
