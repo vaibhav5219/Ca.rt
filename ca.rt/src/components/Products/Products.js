@@ -1,5 +1,6 @@
 import ListItem from "../ListItems/ListItem";
 import { useEffect, useState } from "react";
+import axios from "axios"
 
 const Products = () => {
     const [items, setItems] = useState([
@@ -19,14 +20,17 @@ const Products = () => {
         }
     ]);
     useEffect(()=>{  // 1st parm is function, which executes 1st render and re-render
-        const res = fetch('https://react-cart-api-2022-default-rtdb.firebaseio.com/Items.json')
-        .then(response => response.json())
-        .then(data => {                         // To avoid call back hell, so use chaining
-            console.log(data)
-        })
-        .catch(error =>{      // Error handling
-            console.log(error);
-        })
+        // const res = fetch('https://react-cart-api-2022-default-rtdb.firebaseio.com/Items.json')
+        // .then(response => response.json())
+        // .then(data => {                         // To avoid call back hell, so use chaining
+        //     console.log(data)
+        // })
+        // .catch(error =>{      // Error handling
+        //     console.log(error);
+        // })
+        axios.get("https://react-cart-api-2022-default-rtdb.firebaseio.com/Items.json")
+        .then(response => console.log(response))
+        .catch(error => console.log(error));
     },[]);
 
     return (
