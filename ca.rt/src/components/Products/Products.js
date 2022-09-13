@@ -4,25 +4,23 @@ import axios from "axios"
 
 const Products = () => {
     const [items, setItems] = useState([]);
-    useEffect(()=>{  // 1st parm is function, which executes 1st render and re-render
-        // const res = fetch('https://react-cart-api-2022-default-rtdb.firebaseio.com/Items.json')
-        // .then(response => response.json())
-        // .then(data => {                         // To avoid call back hell, so use chaining
-        //     console.log(data)
-        // })
-        // .catch(error =>{      // Error handling
-        //     console.log(error);
-        // })
-        axios.get("https://react-cart-api-2022-default-rtdb.firebaseio.com/Items.json")
-        .then( response => {
-            //console.log(response)
-            const data = response.data;
-            const transformData = data.map((item, index) => { return { ...item, id : index }} )     // if we don't use id , it will create id
-            //console.log(transformData);
-            setItems(transformData);
-        })
-        .catch(error => console.log(error));
-    },[]);
+    useEffect(() => {  // 1st parm is function, which executes 1st render and re-render
+
+        async function fetchItems() {
+            try {
+                const response = await axios.get("https://react-cart-api-2022-default-rtdb.firebaseio.com/Items.json");    // to avoid call back hell 
+                const data = response.data;
+                const transformData = data.map((item, index) => { return { ...item, id: index } })     // if we don't use id , it will create id
+                setItems(transformData);
+            }
+            catch (error) {
+                console.log("Error  ", error);
+                alert("Error occured");
+            }
+        }
+
+        fetchItems();
+    }, []);
 
     return (
         <div>
