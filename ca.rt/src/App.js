@@ -13,8 +13,6 @@ import {useState} from 'react';
     <div className="Container">
       <Header></Header>
       <Subheader></Subheader>
-      {/* {toggle ? "Alternate Component" :  <Timer></Timer>}
-      <button onClick={()=>setToggle(!toggle)}>Toggle</button> */}
       <Products></Products>
       
     </div>
