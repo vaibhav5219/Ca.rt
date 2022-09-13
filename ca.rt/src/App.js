@@ -7,18 +7,14 @@ import Timer from './components/Timer/Timer'
 import {useState} from 'react';
 import User from './components/User/User';
 
-function App() {
-  const[toggle, setToggle] = useState(false);
+ function App() {
+//   const[toggle, setToggle] = useState(false);
   
   return (
     <div className="Container">
       <Header></Header>
       <Subheader></Subheader>
-      {toggle ? "Alternate Component" :  <Timer></Timer>}
-      <button onClick={()=>setToggle(!toggle)}>Toggle</button>
-      <User></User>
       <Products></Products>
-      
     </div>
   );
 }
