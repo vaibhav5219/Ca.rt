@@ -4,7 +4,10 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import "../node_modules/bootstrap/dist/css/bootstrap.css"
+<<<<<<< HEAD
 
+=======
+>>>>>>> feature/working-on-project
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

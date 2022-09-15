@@ -1,9 +1,12 @@
 import ListItem from "../ListItems/ListItem";
 import { useEffect, useState } from "react";
 import axios, { Axios } from "axios"
+import Loader from "../UI/Loader";
 
 const Products = () => {
     const [items, setItems] = useState([]);
+    const [loader, setLoader] = useState(true);
+
     useEffect(() => {  // 1st parm is function, which executes 1st render and re-render
 
         async function fetchItems() {
@@ -11,11 +14,15 @@ const Products = () => {
                 const response = await axios.get("https://react-cart-api-2022-default-rtdb.firebaseio.com/Items.json");    // to avoid call back hell 
                 const data = response.data;
                 const transformData = data.map((item, index) => { return { ...item, id: index } })     // if we don't use id , it will create id
+                //setLoader(false);
                 setItems(transformData);
             }
             catch (error) {
                 console.log("Error  ", error);
                 alert("Error occured");
+            }
+            finally{
+                setLoader(false);
             }
         }
 
@@ -42,7 +49,7 @@ const Products = () => {
     }
 
     return (
-        <div>
+        <>
             <div className="d-flex flex-column"></div>
             <div className={"product-list d-flex flex-column "}>
                 <div className={"product-list-wrapper  d-flex justify-content-center"}>
@@ -54,7 +61,8 @@ const Products = () => {
                 </div>
             </div >
             <div className="d-flex flex-column"></div>
-        </div>
+            {loader && <Loader/>}
+        </>
     );
 }
 
