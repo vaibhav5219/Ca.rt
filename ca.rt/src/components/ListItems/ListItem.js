@@ -1,7 +1,8 @@
 //import AddToCartIcon from "../assets/icons/cart.png"
-import AddToCartIcon from "../../assets/icons/cart.png"
-import { Fragment, useState } from "react"
+import AddToCartIcon from "../../assets/icons/cart.png";
+import { Fragment, useState } from "react";
 import Modal from "../UI/Modal";
+import Example from "../UI/Example";
 
 const ListItem = ({ data, updateItemTitle }) => {
     //let[message,setMessage] = useState("Not added to cart yet");
@@ -18,7 +19,7 @@ const ListItem = ({ data, updateItemTitle }) => {
     const handleModal = () =>{
         setShowModal(previousState => !previousState)
     }
-
+    
     return (
         <Fragment>
             <div className={"item-card"} onClick={handleModal}>
@@ -49,7 +50,15 @@ const ListItem = ({ data, updateItemTitle }) => {
                         </div>
                 }
             </div>
-            {showModal && <Modal onClose={handleModal}/>}
+            {
+                <Example></Example>
+            }
+            {
+                showModal && 
+                <Modal onClose={handleModal}>
+                    List Item Content !
+                </Modal>
+            }
         </Fragment>
     );
 }

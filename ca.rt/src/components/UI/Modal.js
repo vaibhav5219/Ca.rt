@@ -8,10 +8,10 @@ const Modal = ({onClose}) =>{
             {
                 ReactDOM.createPortal(
                     <Fragment>
-                        <Backdrop onClose={onClose}></Backdrop>
+                         <Backdrop onClick={onClose}></Backdrop> 
                         <div className="modal">
                             Modal Content!
-                            <button onClick={onClose}>X</button>
+                            <button className="closeModal" onClick={onClose}>X</button>
                         </div>
                     </Fragment>
                     ,
