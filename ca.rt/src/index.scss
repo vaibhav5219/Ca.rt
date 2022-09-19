@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Doppio+One&family=Roboto:wght@300;400&display=swap');
  @import "./styles/variables";
  @import "./styles/items.scss";
  @import "./styles/loader.scss";
@@ -7,7 +7,7 @@
  @import "./styles/modal.scss";
 
 
-*{
+ * {
   box-sizing: border-box;
 }
 
@@ -18,7 +18,7 @@ html {
 
 body {
   line-height: 1.5;
-  margin: 20;
+  margin: 0;
   position: relative;
 }
 
