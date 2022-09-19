@@ -13,7 +13,9 @@ const Products = () => {
             try {
                 const response = await axios.get("https://react-cart-api-2022-default-rtdb.firebaseio.com/Items.json");    // to avoid call back hell 
                 const data = response.data;
-                const transformData = data.map((item, index) => { return { ...item, id: index } })     // if we don't use id , it will create id
+                const transformData = data.map((item, index) => {
+                     return { ...item, id: index } 
+                })     // if we don't use id , it will create id
                 //setLoader(false);
                 setItems(transformData);
             }
