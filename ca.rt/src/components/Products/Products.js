@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import axios, { Axios } from "axios"
 import Loader from "../UI/Loader";
 
-const Products = () => {
+const Products = ({onAddItems, onRemoveItems}) => {
     const [items, setItems] = useState([]);
     const [loader, setLoader] = useState(true);
+    const [presentItems, setPresentItems] = useState([]);
 
     useEffect(() => {  // 1st parm is function, which executes 1st render and re-render
 
@@ -30,6 +31,26 @@ const Products = () => {
 
         fetchItems();
     }, []);
+
+    const handleAddItems = id =>{
+        if(presentItems.indexOf(id) > -1){
+            return;
+        }
+        setPresentItems([...presentItems, id]);
+        onAddItems();
+        //console.log(id);
+    }
+    const handleRemoveItems = id =>{
+        let index = presentItems.indexOf(id);
+        if(index > -1)
+        {
+            let items1 = [...presentItems];
+            items1.splice(index, 1);
+            setPresentItems([...items1]);
+            onRemoveItems();
+        }
+        //console.log(id);
+    }
 
     const updateItemTitle = async (itemId) => {
         try {
@@ -57,7 +78,7 @@ const Products = () => {
                 <div className={"product-list-wrapper  d-flex justify-content-center"}>
                     {
                         items.map(item => {
-                            return (<ListItem data={item} key={item.id} updateItemTitle={updateItemTitle} />);
+                            return (<ListItem onAdd={handleAddItems} onRemove={handleRemoveItems} data={item} key={item.id} updateItemTitle={updateItemTitle} />);
                         })
                     }
                 </div>

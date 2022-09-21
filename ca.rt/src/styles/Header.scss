@@ -4,9 +4,29 @@
 }
 .cartItem{
   position: absolute;
-  right: 200px;
-}
+  right: 2%;
+  height: 100%;
+  margin-top: 1.75%;
 
+  i {
+    width: 100px;
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+  }
+  .badge:after {
+    top : -1rem;
+    right: -0.30rem;
+  }
+}
+.text-white {
+   img {
+  position: absolute;
+  right: 75%;
+  text-align: center;
+  content: center;
+   }
+}
 .navbar-collapse {
     margin-left: 30%;
 }
@@ -33,7 +53,7 @@
   .badge:after {
     content: attr(data-count);
     position: absolute;
-    background: #3a0806f6;
+    background: #ff0000f6;
     height: 2rem;
     top: 1rem;
     right: 1.5rem;
@@ -43,7 +63,7 @@
     font-size: 1rem;
     border-radius: 50%;
     color: white;
-    border: 1px solid #ff6600;
+    border: 1px solid #ff0000;
     font-family: sans-serif;
     font-weight: bold;
   }
