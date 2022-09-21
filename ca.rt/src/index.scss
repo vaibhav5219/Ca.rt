@@ -1,17 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Doppio+One&family=Roboto:wght@300;400&display=swap');
  @import "./styles/variables";
  @import "./styles/items.scss";
-<<<<<<< HEAD
-@import "./styles/Header.scss";
-@import "./styles/SubHeader.scss";
-@import "./styles/User.scss";
-=======
  @import "./styles/loader.scss";
  @import "./styles/Header.scss";
  @import "./styles/SubHeader.scss";
  @import "./styles/modal.scss";
 
->>>>>>> feature/working-on-project
 
  * {
   box-sizing: border-box;
