@@ -1,9 +1,7 @@
 import "../../styles/Header.scss"
 import AddToCartIcon from "../../assets/icons/cart.png"
 
-const num=0;
-
-const Header = () => {
+const Header = ({count}) => {
     return (
         <div>
             <nav className="navbar navbar-expand-lg bg-info">
@@ -21,7 +19,7 @@ const Header = () => {
                     <div className="cartItem">
                         <div className="text-white">
                             <img src={AddToCartIcon} alt="Cart Icon" width={"20"} height={"20"}></img>
-                            <i data-count={num} className="fas fa-shopping-cart  icon-grey badge"><strong>Cart</strong></i> 
+                            <i data-count={count} className="fas fa-shopping-cart  icon-grey badge"><strong>Cart</strong></i> 
                         </div> 
                     </div>
                 </div>

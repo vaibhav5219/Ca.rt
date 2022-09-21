@@ -8,12 +8,20 @@ import {useState} from 'react';
 
  function App() {
 //   const[toggle, setToggle] = useState(false);
-  
+  const[cartItems, setCartItems] = useState(0);
+
+  const handleAddItems = () =>{
+    setCartItems( setCartItems => setCartItems+1)
+  }
+  const handleRemoveItems = () =>{
+    setCartItems( setCartItems => setCartItems-1)
+  }
+
   return (
     <div className="Container">
-      <Header></Header>
+      <Header count={cartItems}></Header>
       <Subheader></Subheader>
-      <Products></Products>
+      <Products onAddItems={handleAddItems} onRemoveItems={handleRemoveItems} > </Products>
       
     </div>
   );

@@ -4,7 +4,7 @@ import { Fragment, useState } from "react";
 import Modal from "../UI/Modal";
 import Example from "../UI/Example";
 
-const ListItem = ({ data, updateItemTitle }) => {
+const ListItem = ({ data, updateItemTitle, onAdd, onRemove }) => {
     //let[message,setMessage] = useState("Not added to cart yet");
     //let message = "Not added to cart yet"
     const [counter, setCounter] = useState(0);
@@ -12,15 +12,19 @@ const ListItem = ({ data, updateItemTitle }) => {
     //const increaseCounterByOne = ()=> { setCounter: counter+1  };
     const increaseCounterByOne = event => {
         event.stopPropagation();
+        onAdd(data.id);
         setCounter(counter => {
             return (counter, counter + 1)
         });
     };
     const decreaseCounterByOne = event => {
         event.stopPropagation();
-        if(counter == 0)
+        if(counter === 0)
             return;
 
+        if(counter >= 1){
+            onRemove(data.id);
+        }
         setCounter(counter => {
             return (counter, counter - 1)
         });
