@@ -15,7 +15,11 @@ const Products = ({onAddItems, onRemoveItems}) => {
                 const response = await axios.get("https://react-cart-api-2022-default-rtdb.firebaseio.com/Items.json");    // to avoid call back hell 
                 const data = response.data;
                 const transformData = data.map((item, index) => {
-                     return { ...item, id: index } 
+                    return { 
+                        ...item,
+                        quantity : 0,
+                        id: index
+                    } 
                 })     // if we don't use id , it will create id
                 //setLoader(false);
                 setItems(transformData);
@@ -33,23 +37,36 @@ const Products = ({onAddItems, onRemoveItems}) => {
     }, []);
 
     const handleAddItems = id =>{
-        if(presentItems.indexOf(id) > -1){
-            return;
-        }
-        setPresentItems([...presentItems, id]);
-        onAddItems();
-        //console.log(id);
+        // if(presentItems.indexOf(id) > -1){
+        //     return;
+        // }
+        // setPresentItems([...presentItems, id]);
+        
+        // //console.log(id);
+        let data = [...items];
+        let index = data.findIndex(i => i.id === id);
+        data[index].quantity += 1;
+        setItems([...data]);
+        onAddItems(data[index]);
     }
     const handleRemoveItems = id =>{
-        let index = presentItems.indexOf(id);
-        if(index > -1)
-        {
-            let items1 = [...presentItems];
-            items1.splice(index, 1);
-            setPresentItems([...items1]);
-            onRemoveItems();
-        }
+        // let index = presentItems.indexOf(id);
+        // if(index > -1)
+        // {
+        //     let items1 = [...presentItems];
+        //     items1.splice(index, 1);
+        //     setPresentItems([...items1]);
+        //     onRemoveItems();
+        // }
         //console.log(id);
+        let data = [...items];
+        let index = data.findIndex(i => i.id === id);
+        
+        if(data[index].quantity > 0){
+            data[index].quantity -= 1;
+            setItems([...data]);
+            onRemoveItems(data[index]);
+        }
     }
 
     const updateItemTitle = async (itemId) => {

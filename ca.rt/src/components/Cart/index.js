@@ -2,8 +2,9 @@ import Modal from "../UI/Modal";
 import { useState } from "react";
 import { useEffect } from "react";
 import "../../styles/Cart.scss";
+import CartItems from "../Cart/CartItems"
 
-const Cart = ({ count, AddToCartIcon }) => {
+const Cart = ({ count, AddToCartIcon , items}) => {
 
     const [showModal, setShowModal] = useState(false);
 
@@ -29,27 +30,9 @@ const Cart = ({ count, AddToCartIcon }) => {
                             {
                                 count > 0
                                     ?
-                                    <div className="checkout-modal_list-item">
-                                        <div className="img-wrap">
-                                            <img className="img-fluid" src={`/assets/placeholder.png`} ></img>
-                                        </div>
-                                        <div className="information">
-                                            <div>
-                                                <h4 className="">Title Of The Price</h4>
-                                                <div className="pricing">
-                                                    <span>2000</span>
-                                                    <small>
-                                                        <strike>3000</strike>
-                                                    </small>
-                                                </div>
-                                            </div>
-                                            <div className="cart-addon cart-addon__modal">
-                                                <button>-</button>
-                                                <span className="counter">{0}</span>
-                                                <button>+</button>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    items.map(item => {
+                                        return <CartItems data={item} key={item.id}></CartItems>
+                                    }) 
                                     :
                                     <div className="empty-cart"> Please Add Something in your cart</div>
                             }
@@ -60,7 +43,14 @@ const Cart = ({ count, AddToCartIcon }) => {
                             <div className="checkout-modal_footer">
                                 <div className="totalAmount">
                                     <h4>Total Amount</h4>
-                                    <div>2000 INR</div>
+                                    <div>
+                                        {
+                                            items.reduce((previous, current) => {
+                                                return previous + ( current.discountedPrice * current.quantity )
+                                            }, 0)
+                                        }
+                                        <span style={{'margin':'5px'}}> INR </span>
+                                    </div>
                                 </div>
                                 <button>Order Now</button>
                             </div>

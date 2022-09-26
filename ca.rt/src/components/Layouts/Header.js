@@ -2,7 +2,7 @@ import "../../styles/Header.scss"
 import AddToCartIcon from "../../assets/icons/cart.png"
 import Cart from "../Cart";
 
-const Header = ({count}) => {
+const Header = ({count, items}) => {
     return (
         <div>
             <nav className="navbar navbar-expand-lg bg-info">
@@ -15,7 +15,7 @@ const Header = ({count}) => {
                             <button className="btn btn-outline-success" type="submit">Search</button>
                         </form>
                     </div>
-                    <Cart count={count} AddToCartIcon={AddToCartIcon}></Cart>
+                    <Cart count={count} AddToCartIcon={AddToCartIcon} items={items}></Cart>
                 </div>
             </nav>
         </div>

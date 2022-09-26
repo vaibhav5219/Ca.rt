@@ -9,18 +9,38 @@ import User from './components/User/User';
 
  function App() {
 //   const[toggle, setToggle] = useState(false);
-  const[cartItems, setCartItems] = useState(0);
+  const[cartItems, setCartItems] = useState([]);
 
-  const handleAddItems = () =>{
-    setCartItems( setCartItems => setCartItems+1)
+  const handleAddItems = item =>{
+    let items = [...cartItems]
+    let index = items.findIndex(i => i.id === item.id )
+
+    if(index > -1){
+      items[index] = item
+    }
+    else{
+      items.push(items)
+    }
+    setCartItems([...items])
+    //setCartItems( setCartItems => setCartItems+1)
   }
-  const handleRemoveItems = () =>{
-    setCartItems( setCartItems => setCartItems-1)
+  const handleRemoveItems = item =>{
+    //setCartItems( setCartItems => setCartItems-1)
+    let items = [...cartItems]
+    let index = items.findIndex(i => i.id === item.id )
+
+    if(items[index].quantity === 0)
+    {
+      items.splice(index, 1)
+    }else{
+      items[index] = item
+    }
+    setCartItems([...items])
   }
 
   return (
     <div className="Container">
-      <Header count={cartItems}></Header>
+      <Header count={cartItems.length} items={cartItems}></Header>
       <Subheader></Subheader>
       <Products onAddItems={handleAddItems} onRemoveItems={handleRemoveItems} > </Products>
       
