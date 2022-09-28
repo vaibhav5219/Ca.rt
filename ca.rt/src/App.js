@@ -10,6 +10,10 @@ import User from './components/User/User';
  function App() {
 //   const[toggle, setToggle] = useState(false);
   const[cartItems, setCartItems] = useState([]);
+  const[eventQueue, setEventQueue] = useState({
+    id: "",
+    type: ""
+  });
 
   const handleAddItems = item =>{
     let items = [...cartItems]
@@ -37,12 +41,22 @@ import User from './components/User/User';
     }
     setCartItems([...items])
   }
+  // if type === -1  decrease Quantity
+  // if type === 1 increase Quantity
+
+  const handleEventQueue = (id, type) => {
+    console.log(id," ",type)
+    setEventQueue(
+      id, 
+      type
+    )
+  }
 
   return (
     <div className="Container">
-      <Header count={cartItems.length} items={cartItems}></Header>
+      <Header count={cartItems.length} items={cartItems} onHandleEvent={handleEventQueue}></Header>
       <Subheader></Subheader>
-      <Products onAddItems={handleAddItems} onRemoveItems={handleRemoveItems} > </Products>
+      <Products onAddItems={handleAddItems} onRemoveItems={handleRemoveItems} eventState={eventQueue}> </Products>
       
     </div>
   );

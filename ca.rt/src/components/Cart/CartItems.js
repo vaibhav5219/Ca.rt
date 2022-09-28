@@ -1,4 +1,4 @@
-const CartItems = ({ data }) => {
+const CartItems = ({ data, OnEmitDecreaseItem, OnEmitIncreaseItem}) => {
     return (
         <>
             <div className="checkout-modal_list-item">
@@ -16,9 +16,9 @@ const CartItems = ({ data }) => {
                         </div>
                     </div>
                     <div className="cart-addon cart-addon__modal">
-                        <button>-</button>
+                        <button onclick={() => OnEmitDecreaseItem(data.id) }>-</button>
                         <span className="counter">{data.quantity}</span>
-                        <button>+</button>
+                        <button onclick={() => OnEmitIncreaseItem(data.id) }>+</button>
                     </div>
                 </div>
             </div>

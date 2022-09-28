@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import "../../styles/Cart.scss";
 import CartItems from "../Cart/CartItems"
 
-const Cart = ({ count, AddToCartIcon , items}) => {
+const Cart = ({ count, AddToCartIcon , items, onHandleEvent}) => {
 
     const [showModal, setShowModal] = useState(false);
 
@@ -31,7 +31,13 @@ const Cart = ({ count, AddToCartIcon , items}) => {
                                 count > 0
                                     ?
                                     items.map(item => {
-                                        return <CartItems data={item} key={item.id}></CartItems>
+                                        return ( 
+                                        <CartItems 
+                                            data={item} 
+                                            OnEmitIncreaseItem={id => onHandleEvent(id,1)} 
+                                            OnEmitDecreaseItem={id => onHandleEvent(id,-1)} 
+                                            key={item.id}
+                                        /> )
                                     }) 
                                     :
                                     <div className="empty-cart"> Please Add Something in your cart</div>

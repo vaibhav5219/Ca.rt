@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import axios, { Axios } from "axios"
 import Loader from "../UI/Loader";
 
-const Products = ({onAddItems, onRemoveItems}) => {
+const Products = ({onAddItems, onRemoveItems, eventState}) => {
     const [items, setItems] = useState([]);
     const [loader, setLoader] = useState(true);
-    const [presentItems, setPresentItems] = useState([]);
+    //const [presentItems, setPresentItems] = useState([]);
 
     useEffect(() => {  // 1st parm is function, which executes 1st render and re-render
 
@@ -36,13 +36,18 @@ const Products = ({onAddItems, onRemoveItems}) => {
         fetchItems();
     }, []);
 
+    useEffect(() => {
+        if(eventState.id > -1){
+            if(eventState.type === 1){
+                handleAddItems(eventState.id)
+            }
+            else if(eventState.type === -1){
+                handleRemoveItems(eventState.id)
+            }
+        }
+    }, [eventState]);
+
     const handleAddItems = id =>{
-        // if(presentItems.indexOf(id) > -1){
-        //     return;
-        // }
-        // setPresentItems([...presentItems, id]);
-        
-        // //console.log(id);
         let data = [...items];
         let index = data.findIndex(i => i.id === id);
         data[index].quantity += 1;
@@ -50,15 +55,6 @@ const Products = ({onAddItems, onRemoveItems}) => {
         onAddItems(data[index]);
     }
     const handleRemoveItems = id =>{
-        // let index = presentItems.indexOf(id);
-        // if(index > -1)
-        // {
-        //     let items1 = [...presentItems];
-        //     items1.splice(index, 1);
-        //     setPresentItems([...items1]);
-        //     onRemoveItems();
-        // }
-        //console.log(id);
         let data = [...items];
         let index = data.findIndex(i => i.id === id);
         
