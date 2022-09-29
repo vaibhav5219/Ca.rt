@@ -3,19 +3,25 @@ import { useState } from "react";
 import { useEffect } from "react";
 import "../../styles/Cart.scss";
 import CartItems from "../Cart/CartItems"
+import OrderSuccessModal from "../UI/OrderSuccess";
 
 const Cart = ({ count, AddToCartIcon , items, onHandleEvent}) => {
 
     const [showModal, setShowModal] = useState(false);
+    const [orderModal, setOrderModal] = useState(false);
 
     const handleModal = () => {
         setShowModal(previousState => !previousState);
+    }
+    const handleOrderModal = () =>{
+        setShowModal(false);
+        setOrderModal(previous => !previous);
     }
 
     return (
         <>
             <button className="cartItem" onClick={handleModal}>
-                <div className="text-white">
+                <div className="">
                     <img src={AddToCartIcon} alt="Cart Icon" width={"20"} height={"20"}></img>
                     <i data-count={count} className="fas fa-shopping-cart  icon-grey badge"><strong>Cart</strong></i>
                 </div>
@@ -58,11 +64,14 @@ const Cart = ({ count, AddToCartIcon , items, onHandleEvent}) => {
                                         <span style={{'margin':'5px'}}> INR </span>
                                     </div>
                                 </div>
-                                <button>Order Now</button>
+                                <button onClick={handleOrderModal}>Order Now</button>
                             </div>
                         }
                     </div>
                 </Modal>
+            }
+            {
+                orderModal && <OrderSuccessModal onClose={handleOrderModal}></OrderSuccessModal>
             }
         </>
     );

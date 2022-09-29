@@ -15,7 +15,7 @@ const Header = ({count, items, onHandleEvent}) => {
                             <button className="btn btn-outline-success" type="submit">Search</button>
                         </form>
                     </div>
-                    <Cart count={count} AddToCartIcon={AddToCartIcon} items={items} ></Cart>
+                    <Cart count={count} AddToCartIcon={AddToCartIcon} items={items} onHandleEvent={onHandleEvent}></Cart>
                 </div>
             </nav>
         </div>
