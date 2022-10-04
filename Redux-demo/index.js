@@ -1,6 +1,7 @@
 //import { legacy_createStore as createStore} from 'redux'
 
 const redux = require("redux");
+const thunk = require("redux-thunk").default;
 
 const rootReducer = (state = {count : 0}, action) =>{
     switch(action.type){
@@ -35,7 +36,8 @@ const rootReducer = (state = {count : 0}, action) =>{
 
 const store = redux.createStore(rootReducer,{
     count: 0
-})
+},
+redux.applyMiddleware(thunk))
 
 const triggeredOnStoreUpdate = () => {
     const data = store.getState();
@@ -43,21 +45,37 @@ const triggeredOnStoreUpdate = () => {
 }
 
 store.subscribe(triggeredOnStoreUpdate);
-store.dispatch({
-    type: "INCREMENT"
-})
-store.dispatch({
-    type: "DECREMENT"
-})
-store.dispatch({
-    type: "INCREMENT_BY_VALUE",
-    payload: {
-        value: Math.floor(Math.random() * 1000)
+
+
+const incrementcounter = value =>{
+    return (dispatch) => {
+        let type = "INCREMENT"
+        let payload = {}
+        if(value){
+            type = "INCREMENT_BY_VALUE"
+            payload.value = value
+        }
+        dispatch({
+            type,
+            payload
+        })
     }
-})
-store.dispatch({
-    type: "DECREMENT_BY_VALUE",
-    payload: {
-        value: Math.floor(Math.random() * 1000)
+}
+const decrementcounter = value =>{
+    return (dispatch) => {
+        let type = "DECREMENT"
+        let payload = {}
+        if(value){
+            type = "DECREMENT_BY_VALUE"
+            payload.value = value
+        }
+        dispatch({
+            type,
+            payload
+        })
     }
-})
+}
+store.dispatch(incrementcounter())
+store.dispatch(decrementcounter())
+store.dispatch(incrementcounter(Math.floor(Math.random() * 1000)))  // Math.floor(Math.random() * 1000) = this value can be asyc/ fetched by webapi
+store.dispatch(decrementcounter(Math.floor(Math.random() * 1000)))  // so we can introduce  SideEffect in this function 
