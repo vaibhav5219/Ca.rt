@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
+//import Button from 'react-bootstrap/Button';
+// import Modal from 'react-bootstrap/Modal';
 
 const Example = () => {
     const [show, setShow] = useState(false);
@@ -10,9 +10,9 @@ const Example = () => {
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>  Launch static backdrop modal  </Button>
+            {/* <Button variant="primary" onClick={handleShow}>  Launch static backdrop modal  </Button> */}
 
-            <Modal
+            {/* <Modal
                 show={show}
                 onHide={handleClose}
                 backdrop="static"
@@ -26,12 +26,12 @@ const Example = () => {
                     escape key.
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
+                    {/* <Button variant="secondary" onClick={handleClose}> */}
                         Close
-                    </Button>
-                    <Button variant="primary">Understood</Button>
-                </Modal.Footer>
-            </Modal>
+                    {/* </Button> */}
+                    {/* <Button variant="primary">Understood</Button> */}
+                {/* </Modal.Footer> */}
+            {/* </Modal> */} 
         </>
     );
 }
