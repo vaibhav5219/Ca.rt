@@ -16,14 +16,19 @@ const mainReducer = (state, action) =>{
                     quantity: 1
                 })
             }
+            const totalAmount = state.totalAmount + payload.item.discountedPrice
             return {
                 ...state,
-                items: items
+                items: items,
+                totalAmount: totalAmount
             }
         }
         case 'REMOVE_ITEM':{
             let items = [...state.items]
             let index = items.findIndex(item => item.id === payload.id)
+            
+            const totalAmount = state.totalAmount - items[index].discountedPrice
+
             if(items[index].quantity === 1){
                 items.splice(index, 1)
             }else if(items[index].quantity > 1){
@@ -34,7 +39,8 @@ const mainReducer = (state, action) =>{
             }
             return{
                 ...state,
-                items: items
+                items: items,
+                totalAmount: totalAmount
             }
         }
         case 'CLEAR_CART':
