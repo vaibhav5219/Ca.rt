@@ -3,18 +3,31 @@ import AddToCartIcon from "../../assets/icons/cart.png";
 import { Fragment, useState } from "react";
 import Modal from "../UI/Modal";
 import Example from "../UI/Example";
-import {useSelector} from "react-redux"
+import {useSelector,useDispatch} from "react-redux"
 
-const ListItem = ({ data, updateItemTitle, onAdd, onRemove }) => {
+const ListItem = ({ data, updateItemTitle }) => {
 
     const item = useSelector(state => state.items.find(item => item.id === data.id))
+    const dispatch = useDispatch()
 
     const increaseCounterByOne = event => {
         event.stopPropagation();
+        dispatch({
+            type: "ADD_ITEM",
+            payload: {
+                item: data
+            }
+        })
         // onAdd(data.id);
     };
     const decreaseCounterByOne = event => {
         event.stopPropagation();
+        dispatch({
+            type: "REMOVE_ITEM",
+            payload: {
+                id: data.id
+            }
+        })
         // onRemove(data.id);
     };
     const [showModal, setShowModal] = useState(false);
