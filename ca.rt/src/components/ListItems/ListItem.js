@@ -3,15 +3,19 @@ import AddToCartIcon from "../../assets/icons/cart.png";
 import { Fragment, useState } from "react";
 import Modal from "../UI/Modal";
 import Example from "../UI/Example";
+import {useSelector} from "react-redux"
 
 const ListItem = ({ data, updateItemTitle, onAdd, onRemove }) => {
+
+    const item = useSelector(state => state.items.find(item => item.id === data.id))
+
     const increaseCounterByOne = event => {
         event.stopPropagation();
-        onAdd(data.id);
+        // onAdd(data.id);
     };
     const decreaseCounterByOne = event => {
         event.stopPropagation();
-        onRemove(data.id);
+        // onRemove(data.id);
     };
     const [showModal, setShowModal] = useState(false);
     const handleModal = () => {
@@ -35,7 +39,7 @@ const ListItem = ({ data, updateItemTitle, onAdd, onRemove }) => {
                 </div>
                 {/* <button onClick={()=>updateItemTitle(data.id)} >Update the title</button> */}
                 {
-                    data.quantity < 1 ?
+                    !item || item?.quantity < 1 ?
                         <button className={"cart-add "} onClick={increaseCounterByOne} >
                             <span className={"cart-add "}>Add to cart</span>
                             <img src={AddToCartIcon} alt="Cart Icon" width={"20"} height={"20"}></img>
@@ -43,7 +47,7 @@ const ListItem = ({ data, updateItemTitle, onAdd, onRemove }) => {
                         :
                         <div className={"cart-addon cart-add"}  >
                             <button onClick={decreaseCounterByOne}><span>-</span></button>
-                            <span className={"counter"}>{data.quantity} </span>
+                            <span className={"counter"}>{!item || item?.quantity} </span>
                             <button onClick={increaseCounterByOne}><span>+</span></button>
                         </div>
                 }
@@ -69,7 +73,7 @@ const ListItem = ({ data, updateItemTitle, onAdd, onRemove }) => {
                         </div>
                         <p>{data.description}</p>
                         {
-                            data.quantity < 1 ?
+                            !item || item?.quantity < 1 ?
                                 <button className={"cart-add "} onClick={increaseCounterByOne} >
                                     <span className={"cart-add "}>Add to cart</span>
                                     <img src={AddToCartIcon} alt="Cart Icon" width={"20"} height={"20"}></img>
@@ -77,7 +81,7 @@ const ListItem = ({ data, updateItemTitle, onAdd, onRemove }) => {
                                 :
                                 <div className={"cart-addon cart-add"}  >
                                     <button onClick={decreaseCounterByOne}><span>-</span></button>
-                                    <span className={"counter"}>{data.quantity} </span>
+                                    <span className={"counter"}>{!item || item?.quantity} </span>
                                     <button onClick={increaseCounterByOne}><span>+</span></button>
                                 </div>
                         }

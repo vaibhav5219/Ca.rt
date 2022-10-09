@@ -17,7 +17,6 @@ const Products = ({onAddItems, onRemoveItems, eventState}) => {
                 const transformData = data.map((item, index) => {
                     return { 
                         ...item,
-                        quantity : 0,
                         id: index
                     } 
                 })     // if we don't use id , it will create id
