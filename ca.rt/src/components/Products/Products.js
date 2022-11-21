@@ -12,7 +12,7 @@ const Products = ({onAddItems, onRemoveItems, eventState}) => {
 
         async function fetchItems() {
             try {
-                const response = await axios.get("https://react-cart-api-2022-default-rtdb.firebaseio.com/Items.json");    // to avoid call back hell 
+                const response = await axios.get("https://react-cart-api-2022-2-default-rtdb.firebaseio.com/Items.json");    // to avoid call back hell 
                 const data = response.data;
                 const transformData = data.map((item, index) => {
                     return { 
