@@ -4,7 +4,7 @@ const mainReducer = (state, action) =>{
     {
         case 'ADD_ITEM':{
             let items = [...state.items]
-            console.log(items[0])
+            console.log('this is from reducer ==>> ',items[0])
             let index = items.findIndex(item => item.id === payload.item.id)
             if(index > -1){
                 items[index] = {

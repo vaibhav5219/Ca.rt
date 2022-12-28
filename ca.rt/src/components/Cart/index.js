@@ -4,14 +4,21 @@ import { useEffect } from "react";
 import "../../styles/Cart.scss";
 import CartItems from "../Cart/CartItems"
 import OrderSuccessModal from "../UI/OrderSuccess";
-import {useSelector,useDispatch} from "react-redux";
+import {useSelector,useDispatch, connect} from "react-redux";
+import { additemhandler, removeitemhandler, clearCartHandler } from "../../actions";
 
-const Cart = ({ AddToCartIcon}) => {
+const Cart = ({
+    items, 
+    totalAmount, 
+    additemhandler, 
+    removeitemhandler, 
+    clearCartHandler
+}) => {
 
     const [showModal, setShowModal] = useState(false);
     const [orderModal, setOrderModal] = useState(false);
-    const items = useSelector(state => state.items)
-    const totalAmount = useSelector(state => state.totalAmount)
+    //const items = useSelector(state => state.items)
+    //const totalAmount = useSelector(state => state.totalAmount)
     const dispatch = useDispatch()
 
     const handleModal = () => {
@@ -19,9 +26,9 @@ const Cart = ({ AddToCartIcon}) => {
     }
     const handleOrderModal = () =>{
         setShowModal(false);
-        dispatch({
-            type: "CLEAR_CART"
-        })
+        console.log("Here!")
+        //dispatch(clearCartHandler())
+        clearCartHandler()
         setOrderModal(previous => !previous);
     }
 
@@ -48,8 +55,9 @@ const Cart = ({ AddToCartIcon}) => {
     return (
         <>
             <button className="cartItem" onClick={handleModal}>
+                <span data-items={items.length}>Cart</span>
                 <div className="">
-                    <img src={AddToCartIcon} alt="Cart Icon" width={"20"} height={"20"}></img>
+                    <img src={""} alt="Cart Icon" width={"20"} height={"20"}></img>
                     <i data-count={items.length} className="fas fa-shopping-cart  icon-grey badge"><strong>Cart</strong></i>
                 </div>
             </button>
@@ -67,8 +75,8 @@ const Cart = ({ AddToCartIcon}) => {
                                         return ( 
                                         <CartItems 
                                             data={item} 
-                                            OnEmitIncreaseItem={item => dispatchEvents(1,item)} 
-                                            OnEmitDecreaseItem={item => dispatchEvents(-1,item)} 
+                                            OnEmitIncreaseItem={()=> additemhandler(item)} 
+                                            OnEmitDecreaseItem={() => removeitemhandler(item.id)} 
                                             key={item.id}
                                         /> )
                                     }) 
@@ -84,11 +92,6 @@ const Cart = ({ AddToCartIcon}) => {
                                     <h4>Total Amount</h4>
                                     <div>
                                         {totalAmount}
-                                        {/* {
-                                            items.reduce((previous, current) => {
-                                                return previous + ( current.discountedPrice * current.quantity )
-                                            }, 0)
-                                        } */}
                                         <span style={{'margin':'5px'}}> INR </span>
                                     </div>
                                 </div>
@@ -105,4 +108,16 @@ const Cart = ({ AddToCartIcon}) => {
     );
 }
 
-export default Cart;
+const mapStateToProps = (state) => {
+    return {
+        items: state.items,
+        totalAmount: state.totalAmount
+    }
+}
+const mapDispatchToProps = {
+    additemhandler,
+    removeitemhandler,
+    clearCartHandler
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);
