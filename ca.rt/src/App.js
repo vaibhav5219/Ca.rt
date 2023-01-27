@@ -8,6 +8,7 @@ import ProductItem from './components/Products/ProductItem';
 // import {useState} from 'react';
 // import User from './components/User/User';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './components/Home/Home';
 
  const App = () => {
   return (
@@ -23,11 +24,12 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
           </Route>
           <Route path="/Products/1" element={<ProductItem />}>
           </Route>
+          <Route path="/" element={<Home />}>
+          </Route>
       </Routes>
         {/* <Route path="/product/1">
           <ProductItem></ProductItem>
         </Route> */}
-        <h1>Default Message</h1>
       </div>
     </BrowserRouter>
   );
