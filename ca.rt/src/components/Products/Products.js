@@ -9,7 +9,7 @@ const Products = () => {
             {/* <a href="/product">Product Item 2</a> */}
             <Link to={"/product/1"}>Product Item 1 via Link</Link><br></br>
             <Link to={"/products"}>Product  Item 2 via Link </Link><br></br>
-            <Link to={"/products"} activeClassName="active">Product  Item 3 via NavLink </Link>
+            <Link to={"/products"} activeclassname="active">Product  Item 3 via NavLink </Link>
             
         </Fragment>
     )
