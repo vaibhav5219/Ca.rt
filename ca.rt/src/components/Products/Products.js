@@ -1,17 +1,29 @@
 import { Fragment } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, Route, Routes, BrowserRouter, useMatch } from "react-router-dom";
 
 const Products = () => {
+
+    
+    const {url, pathname} = useMatch();   //  getting error
+
     return (
+        <BrowserRouter>
         <Fragment>
             <h1>Products Component</h1>
             {/* <a href="/product/1">Product Item 1</a><br></br> */}
             {/* <a href="/product">Product Item 2</a> */}
-            <Link to={"/product/1"}>Product Item 1 via Link</Link><br></br>
+            {/* <Link to={"/product/1"}>Product Item 1 via Link</Link><br></br>
             <Link to={"/products"}>Product  Item 2 via Link </Link><br></br>
             <Link to={"/products"} activeclassname="active">Product  Item 3 via NavLink </Link>
-            
+             */}
+            <Routes>
+            <Route path={`${pathname}/:id([0-9]+)`} element={<Products />} exact>
+            </Route>
+            <Route path="/Products/:category([a-zA-Z]+)/:subcategory?" element={<Products />} exact>
+            </Route>
+            </Routes>
         </Fragment>
+        </BrowserRouter>
     )
 }
 

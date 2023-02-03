@@ -23,13 +23,13 @@ import Home from './components/Home/Home';
       <Routes>
           <Route path="/Products" element={<Products />} exact>
           </Route>
-          <Route path="/Products/:id" element={<Products />} exact>
+          <Route path="/Products/:id" element={<ProductCategory />} exact>
           </Route>
           <Route path={`/Product/:category${"([a-zA-Z]+)"}`} element={<ProductCategory />} exact>
           </Route>   { /*  Not working  */}
           <Route path={`/Product/:category${"([a-zA-Z]+)"}/:subcategory?`} element={<ProductCategory />} exact>
           </Route>
-          <Route path="/Products/1" element={<ProductItem />}>
+          <Route path="/Productscategory" element={<ProductCategory />}>
           </Route>
           <Route path="/" element={<Home />}>
           </Route>
