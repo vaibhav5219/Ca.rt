@@ -8,8 +8,9 @@ import ProductCategory from './components/Products/ProductCategory';
 // import Timer from './components/Timer/Timer'
 // import {useState} from 'react';
 // import User from './components/User/User';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, redirect } from 'react-router-dom';
 import Home from './components/Home/Home';
+import NotFound from './components/NotFound/NotFound';
 
  const App = () => {
   return (
@@ -23,15 +24,17 @@ import Home from './components/Home/Home';
       <Routes>
           <Route path="/Products" element={<Products />} exact>
           </Route>
-          <Route path="/Products/:id" element={<ProductCategory />} exact>
+          {/* <Route path="/Products/:id" element={<ProductCategory />} exact>
           </Route>
           <Route path={`/Product/:category${"([a-zA-Z]+)"}`} element={<ProductCategory />} exact>
-          </Route>   { /*  Not working  */}
+          </Route>     Not working  
           <Route path={`/Product/:category${"([a-zA-Z]+)"}/:subcategory?`} element={<ProductCategory />} exact>
           </Route>
           <Route path="/Productscategory" element={<ProductCategory />}>
-          </Route>
+          </Route>  */}
           <Route path="/" element={<Home />}>
+          </Route>
+          <Route path="/404" element={<NotFound/>}>
           </Route>
       </Routes>
         {/* <Route path="/product/1">
