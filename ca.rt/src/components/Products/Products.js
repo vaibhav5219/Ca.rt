@@ -3,15 +3,29 @@ import { Link, NavLink,
         Route, Routes,
         BrowserRouter, useMatch,
         redirect} from "react-router-dom";
-import Redirect from "react-router";
+import Redirect, { useLocation } from "react-router";
 import NotFound from "../NotFound/NotFound";
 
 const Products = () => {
+    const location = useLocation();
+    console.log(location);
+
+    const {search} = useLocation();  // search is defined
+
+    const queryParams = new URLSearchParams(search);
+    const searchParam = queryParams.get("search");
+
+    console.log({
+        search : queryParams.get("search"),
+        query : queryParams.get("query")
+    })
 
     //const {url, pathname} = useMatch();   //  getting error
 
     return (
         <Fragment>
+            <h1>Product components</h1>
+            {search && <h2>Searched Query: {search}</h2>}
             {/* <a href="/product/1">Product Item 1</a><br></br> */}
             {/* <a href="/product">Product Item 2</a> */}
             {/* <Link to={"/product/1"}>Product Item 1 via Link</Link><br></br>
