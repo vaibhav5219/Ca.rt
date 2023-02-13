@@ -1,6 +1,7 @@
 import "../../styles/Header.scss"
 import AddToCartIcon from "../../assets/icons/cart.png"
 import Cart from "../Cart";
+import SearchBox from "../UI/Search";
 
 const Header = ({count, items, onHandleEvent}) => {
     return (
@@ -10,10 +11,7 @@ const Header = ({count, items, onHandleEvent}) => {
                     <a  className="navbar-brand" href="/">Shop My Cart</a>
                     
                     <div className="collapse navbar-collapse" id="navbarScroll">
-                        <form className="d-flex" role="search">
-                            <input className="form-control me-4" type="search" placeholder="Search" aria-label="Search" />
-                            <button className="btn btn-outline-success" type="submit">Search</button>
-                        </form>
+                        <SearchBox></SearchBox>
                     </div>
                     <Cart count={count} AddToCartIcon={AddToCartIcon} items={items} onHandleEvent={onHandleEvent}></Cart>
                 </div>

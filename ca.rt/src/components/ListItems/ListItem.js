@@ -8,7 +8,7 @@ import { additemhandler, removeitemhandler, clearCartHandler } from "../../actio
 
 
 const ListItem = ({ data, add_item , remove_item }) => {
-    console.log(data)
+    //console.log(data)
     const item = useSelector(state => state.items.find(item => item.id === data.id))
     const dispatch = useDispatch()
 
@@ -100,13 +100,13 @@ const ListItem = ({ data, add_item , remove_item }) => {
 }
 
 const mapStateToProps = (state, ownProps, item) => {
-    console.log(state, ownProps)
+    //console.log(state, ownProps)
     return {
         item : state.items.find(item => item.id == ownProps.data.id)
     }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {
-    console.log(ownProps)
+    //console.log(ownProps)
     return {
         add_item: () =>{
             dispatch({
