@@ -33,7 +33,7 @@ const Cart = ({
     }
 
     const dispatchEvents = (type, item) => {
-        console.log(item, type)
+        //console.log(item, type)
         if(type === 1){
             dispatch({
                 type: "ADD_ITEM",

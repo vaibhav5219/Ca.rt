@@ -1,5 +1,5 @@
 const CartItems = ({ data, OnEmitDecreaseItem, OnEmitIncreaseItem}) => {
-    console.log(data)
+    //console.log(data)
     return (
         <>
             <div className="checkout-modal_list-item">
