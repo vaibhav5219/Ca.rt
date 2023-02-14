@@ -4,12 +4,14 @@ import Loader from "../UI/Loader"
 import { useDispatch } from "react-redux"
 import { getValue } from "@testing-library/user-event/dist/utils"
 //import { loginWithEmailAndPassword, signupWithEmailAndPassword } from "../../actions/auth"
+import axios from "axios";
 
 const AuthIndex = () => {
     const [details, setDetails] = useState({
         email:"",
         password:""
     })
+    const [loader, setLoader] = useState(false);
     const params = useParams();
     console.log(params);
 
@@ -27,6 +29,27 @@ const AuthIndex = () => {
     const handleSubmission = e =>{
         e.preventDefault();
         console.log(details);
+        if(params.login == 'signup'){
+            signupWithEmailAndPassword();
+        }
+    }
+    const signupWithEmailAndPassword = async () => {
+        setLoader(true);
+        try {
+            const response = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBVA436B2-zQ9EFjZqqDy1no1jcBdMHdwY',
+            {
+                email : details.email,
+                password : details.password,
+                returnSecureToken : true
+            });
+            console.log(response)
+        }
+        catch(error) {
+            console.log(error.response)
+        }
+        finally{
+            setLoader(false);
+        }
     }
 
     return (
@@ -66,7 +89,7 @@ const AuthIndex = () => {
                     </form>
                 </div>
             </div>
-            {/* { loader && <Loader/> } */}
+            { loader && <Loader/> }
         </Fragment>
     )
 }
