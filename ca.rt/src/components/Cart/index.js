@@ -7,18 +7,20 @@ import OrderSuccessModal from "../UI/OrderSuccess";
 import {useSelector,useDispatch, connect} from "react-redux";
 import { additemhandler, removeitemhandler, clearCartHandler } from "../../actions";
 
-const Cart = ({
-    items, 
-    totalAmount, 
-    additemhandler, 
-    removeitemhandler, 
-    clearCartHandler
-}) => {
+ const Cart = (
+//    {
+//     items, 
+//     totalAmount, 
+//     additemhandler, 
+//     removeitemhandler, 
+//     clearCartHandler
+// }
+) => {
 
     const [showModal, setShowModal] = useState(false);
     const [orderModal, setOrderModal] = useState(false);
-    //const items = useSelector(state => state.items)
-    //const totalAmount = useSelector(state => state.totalAmount)
+    const items = useSelector(state => state.cart.items)
+    const totalAmount = useSelector(state => state.cart.totalAmount)
     const dispatch = useDispatch()
 
     const handleModal = () => {
