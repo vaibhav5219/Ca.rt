@@ -44,18 +44,16 @@ const AuthIndex = () => {
             //setLoader(previousState => !previousState);
 
             console.log("Before useDispatch ", signupWithEmailAndPassword);
-            dispatch (signupWithEmailAndPassword(details
-            //,
-            //     data =>{
-            //     if(data.error){
-            //         console.log(data.error)
-            //         alert("Some error occured")
-            //     }else{
-            //         console.log("Successfully sign up!")
-            //         history("/");
-            //     }
-            //     //setLoader(previousState => !previousState);
-            // }
+            dispatch (signupWithEmailAndPassword(details, data =>{
+                if(data.error){
+                    console.log("Error=> ",data.error)
+                    alert("Some error occured")
+                }else{
+                    console.log("Successfully sign up!")
+                    history("/");
+                }
+                //setLoader(previousState => !previousState);
+            }
             ))  // second parameter is callback function
         }
         else if (params.login === "login"){
@@ -74,8 +72,7 @@ const AuthIndex = () => {
                 //setLoader(previousState => !previousState);
             })
             )
-
-        } 
+        }
     }
 
     return (
