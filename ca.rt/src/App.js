@@ -4,12 +4,22 @@ import Header from './components/Layouts/Header';
 import Subheader from './components/Layouts/SubHeader.js'
 import Products from './components/Products/Products';
 import Timer from './components/Timer/Timer'
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import User from './components/User/User';
 import { Route, Routes, redirect } from 'react-router-dom';
 import AuthIndex from './components/Auth/Index';
+import { checkIsLoggedIn } from './actions/auth';
+import { useDispatch } from 'react-redux';
 
  function App() {
+
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    dispatch(checkIsLoggedIn( ()=>{}
+    ))
+  }, [])
+
   return (
     <div className="Container">
       <Header></Header>
