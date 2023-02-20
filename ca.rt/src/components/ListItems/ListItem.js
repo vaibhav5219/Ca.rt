@@ -9,7 +9,7 @@ import { additemhandler, removeitemhandler, clearCartHandler } from "../../actio
 
 const ListItem = ({ data, add_item , remove_item }) => {
     //console.log(data)
-    const item = useSelector(state => state.items.find(item => item.id === data.id))
+    const item = useSelector(state => state.cart.items.find(item => item.id === data.id))
     const dispatch = useDispatch()
 
     const increaseCounterByOne = event => {
@@ -100,9 +100,9 @@ const ListItem = ({ data, add_item , remove_item }) => {
 }
 
 const mapStateToProps = (state, ownProps, item) => {
-    //console.log(state, ownProps)
+    //console.log("state & ownprops => ", state, ownProps)
     return {
-        item : state.items.find(item => item.id == ownProps.data.id)
+        item : state.cart.items.find(item => item.id == ownProps.data.id)
     }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {

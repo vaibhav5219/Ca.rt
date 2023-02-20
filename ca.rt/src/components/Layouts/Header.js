@@ -3,9 +3,12 @@ import AddToCartIcon from "../../assets/icons/cart.png"
 import Cart from "../Cart";
 import SearchBox from "../UI/Search";
 import {useNavigate} from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = ({count, items, onHandleEvent}) => {
     const history = useNavigate();
+
+    const authState = useSelector(state => state.auth)
 
     return (
         <div>
@@ -18,7 +21,12 @@ const Header = ({count, items, onHandleEvent}) => {
                         
                     </div>
                     <div className="login_button">
-                        <button className="login-btn" onClick={() => history("/login")}>Login In</button>
+                        {
+                            authState && authState.idToken ? 
+                            <button className="login-btn">User Profile</button>
+                            :
+                            <button className="login-btn" onClick={() => history("/login")}>Login In</button>
+                        }
                     </div>
                     <Cart count={count} AddToCartIcon={AddToCartIcon} items={items} onHandleEvent={onHandleEvent}></Cart>
                 </div>

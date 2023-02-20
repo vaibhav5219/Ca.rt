@@ -8,10 +8,7 @@ import mainReducer from '../Reducers';
 
 const store = createStore(
     mainReducer,
-    {
-        items:[],
-        totalAmount:0
-    },
+    {},
     composeWithDevTools(applyMiddleware(thunk))
 );
 
