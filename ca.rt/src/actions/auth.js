@@ -33,12 +33,15 @@ export const signupWithEmailAndPassword = (details, callback) => {
 }
 
 export const loginWithEmailAndPassword = (details, callback) => {
+    console.log("details => ", details)
     console.log("callBack metod in loginWithEmailAndPassword method ")
     return (async(dispatch) => {
         try {
             const response = await axios.post(`${BASE_URL}/accounts:signInWithPassword?key=${API_KEY}`,
             {
-                idToken: localStorage.getItem("token")
+                email : details.email,
+                password : details.password,
+                returnSecureToken : true
             });
             console.log(response)
             callback(response.data);
@@ -65,7 +68,7 @@ export const checkIsLoggedIn = callback => {
     return async(dispatch) => {
         try {
             let token = localStorage.getItem("token");
-            if(!token){
+            if(!token || token=="undefined"){
                 return;
             }
             const response = await axios.post(`${BASE_URL}/accounts:lookup?key=${API_KEY}`,
