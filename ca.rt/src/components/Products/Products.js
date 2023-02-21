@@ -89,9 +89,9 @@ const Products = () => {
 
     return (
         <>
-            <div className="d-flex flex-column"></div>
-            <div className={"product-list d-flex flex-column "}>
-                <div className={"product-list-wrapper  d-flex justify-content-center"}>
+            <div className="container d-flex flex-column"></div>
+            <div className={"container d-flex flex-column"}>
+                <div className={"row d-flex"}>
                     {
                         items.map(item => {
                             return (<ListItem onAdd={additemhandler} onRemove={removeitemhandler} data={item} key={item.id} updateItemTitle={updateItemTitle} />);

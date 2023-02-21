@@ -31,7 +31,7 @@ const ListItem = ({ data, add_item , remove_item }) => {
 
     return (
         <Fragment>
-            <div className={"item-card"} onClick={handleModal}>
+            <div className={"col-sm-3"} onClick={handleModal}>
                 <img className={"img-fluid"} src={`/assets/${data.thumbnail}`} alt="some title" ></img> {/*  src={"/assets/"+data.thumbnail} */}
                 <div className="item-card__information" >
                     <div className="pricing">
