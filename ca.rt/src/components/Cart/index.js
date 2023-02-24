@@ -5,7 +5,7 @@ import "../../styles/Cart.scss";
 import CartItems from "../Cart/CartItems"
 import OrderSuccessModal from "../UI/OrderSuccess";
 import {useSelector,useDispatch, connect} from "react-redux";
-import { additemhandler, removeitemhandler, clearCartHandler } from "../../actions";
+import { additemhandler, removeitemhandler, clearCartHandler, placeOrderhandler } from "../../actions";
 
  const Cart = (
 //    {
@@ -21,6 +21,7 @@ import { additemhandler, removeitemhandler, clearCartHandler } from "../../actio
     const [orderModal, setOrderModal] = useState(false);
     const items = useSelector(state => state.cart.items)
     const totalAmount = useSelector(state => state.cart.totalAmount)
+    const [orderId, setOrderId] = useState("")
     const dispatch = useDispatch()
 
     const handleModal = () => {
@@ -30,8 +31,26 @@ import { additemhandler, removeitemhandler, clearCartHandler } from "../../actio
         setShowModal(false);
         console.log("Here!")
         //dispatch(clearCartHandler())
-        clearCartHandler()
+        //clearCartHandler()
         setOrderModal(previous => !previous);
+    }
+    
+    const orderHandler = (type, item) => {
+        setShowModal(false)
+        //dispatch(clearCartHandler())
+        dispatch(placeOrderhandler(response => {
+            console.log("response in placeOrderhandler =>", response)
+            if(response.error)
+            {
+                alert(response.data.error || "Some error occured, please try again")
+            }
+            else{
+                console.log(response)
+                setOrderId(response.data.name)
+                setOrderModal(previous => !previous)
+                setShowModal(prev => !prev)
+            }
+        }))
     }
 
     const dispatchEvents = (type, item) => {
@@ -97,14 +116,14 @@ import { additemhandler, removeitemhandler, clearCartHandler } from "../../actio
                                         <span style={{'margin':'5px'}}> INR </span>
                                     </div>
                                 </div>
-                                <button onClick={handleOrderModal}>Order Now</button>
+                                <button onClick={orderHandler}>Order Now</button>
                             </div>
                         }
                     </div>
                 </Modal>
             }
             {
-                orderModal && <OrderSuccessModal onClose={handleOrderModal}></OrderSuccessModal>
+                orderModal && <OrderSuccessModal orderId={orderId} onClose={handleOrderModal}></OrderSuccessModal>
             }
         </>
     );

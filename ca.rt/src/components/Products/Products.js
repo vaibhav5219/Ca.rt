@@ -32,7 +32,8 @@ const Products = () => {
                 if(queryParams){
                     slug += `?search=${queryParams}`
                 }
-                const response = await axios.get(`https://react-cart-api-2023-default-rtdb.firebaseio.com/Items/${slug}`);    // to avoid call back hell 
+                console.log("slug =>",slug)
+                const response = await axios.get(`https://react-cart-api-2023-default-rtdb.firebaseio.com/${slug}`);    // to avoid call back hell 
                 const data = response.data;
                 //console.log(slug)
 
@@ -45,7 +46,7 @@ const Products = () => {
                     return { 
                         ...item,
                         id: index
-                    } 
+                    }
                 })     // if we don't use id , it will create id
                 //setLoader(false);
                 //console.log(transformData);
@@ -71,8 +72,8 @@ const Products = () => {
     const updateItemTitle = async (itemId) => {
         try {
             let title = `updated the title item #Id - ${itemId}`
-            //console.log(`item with id: ${itemId}`);
-            await axios.patch(`https://react-cart-api-2023-default-rtdb.firebaseio.com/Items/${itemId}.json`, {
+            console.log(`item with id: ${itemId}`);
+            await axios.patch(`https://react-cart-api-2023-default-rtdb.firebaseio.com/${itemId}.json`, {
                 title: title
             })
             let data = [...items]
