@@ -96,3 +96,12 @@ export const checkIsLoggedIn = callback => {
         }
     }
 }
+
+export const logout =  () => {
+    return dispatch => {
+        localStorage.removeItem("token")
+        dispatch({
+            type:"LOGOUT"
+        })
+    }
+}
