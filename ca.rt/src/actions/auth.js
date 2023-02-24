@@ -79,6 +79,7 @@ export const checkIsLoggedIn = callback => {
                 type: 'LOGIN',
                 payload: {
                     idToken: token,
+                    localId: response.data.users[0].localId,
                     ...response.data
                 }
             })
@@ -86,7 +87,7 @@ export const checkIsLoggedIn = callback => {
             return callback(response.data)
         }
         catch(error) {
-            console.log("Error message ",error.response)
+            //console.log("Error message ",error.response)
             console.log("Error message ",error)
             return callback({
                 error: true,
