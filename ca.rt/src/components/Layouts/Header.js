@@ -3,12 +3,18 @@ import AddToCartIcon from "../../assets/icons/cart.png"
 import Cart from "../Cart";
 import SearchBox from "../UI/Search";
 import {useNavigate} from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../actions/auth";
 
 const Header = ({count, items, onHandleEvent}) => {
     const history = useNavigate();
+    const dispatch = useDispatch()
 
     const authState = useSelector(state => state.auth)
+
+    const logoutHandler = () => {
+        dispatch(logout())
+    }
 
     return (
         <div>
@@ -17,13 +23,16 @@ const Header = ({count, items, onHandleEvent}) => {
                     <a  className="navbar-brand" href="/">Shop My Cart</a>
                     
                     <div className="collapse navbar-collapse" id="navbarScroll">
-                    <SearchBox></SearchBox>
+                        <SearchBox></SearchBox>
                         
                     </div>
                     <div className="login_button">
                         {
                             authState && authState.idToken ? 
-                            <button className="login-btn">User Profile</button>
+                            <div>
+                                <button className="login-btn">User Profile</button>
+                                <button onClick={logoutHandler} title="Logout" className="login-btn">Logout</button>
+                            </div>
                             :
                             <button className="login-btn" onClick={() => history("/login")}>Login In</button>
                         }
