@@ -4,7 +4,7 @@ const CartItems = ({ data, OnEmitDecreaseItem, OnEmitIncreaseItem}) => {
         <>
             <div className="col-4 flex">
                 <div className="img-wrap">
-                    <img className="img-fluid" src={`/assets/${data.thumbnail}`} alt={data.title} ></img>
+                    <img className="img-fluid" src={`/assets/${data.imagePath}`} alt={data.title} ></img>
                 </div>
                 <div className="information">
                     <div>

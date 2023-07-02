@@ -30,11 +30,11 @@ const Header = ({count, items, onHandleEvent}) => {
                         {
                             authState && authState.idToken ? 
                             <div>
-                                <button className="login-btn">User Profile</button>
+                                <button className="btn btn-outline-danger">User Profile</button>
                                 <button onClick={logoutHandler} title="Logout" className="login-btn">Logout</button>
                             </div>
                             :
-                            <button className="login-btn" onClick={() => history("/login")}>Login In</button>
+                            <button className="btn btn-outline-danger" onClick={() => history("/login")}>Login In</button>
                         }
                     </div>
                     <Cart count={count} AddToCartIcon={AddToCartIcon} items={items} onHandleEvent={onHandleEvent}></Cart>

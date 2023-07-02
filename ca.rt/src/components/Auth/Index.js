@@ -8,8 +8,9 @@ import { loginWithEmailAndPassword, signupWithEmailAndPassword } from "../../act
 
 const AuthIndex = () => {
     const [details, setDetails] = useState({
-        email:"",
-        password:""
+        email: "",
+        password: "",
+        wantShop: false
     })
     const [loader, setLoader] = useState(false);
     const params = useParams();
@@ -27,28 +28,33 @@ const AuthIndex = () => {
             [e.target.name]: e.target.value
         })
     }
-    useEffect(()=>{
-        return  ()=>{
+    useEffect((e) => {
+        return () => {
             // setLoader(false)
             setDetails({
-                email:"",
-                password:""
+                email: "",
+                password: "",
+                //wantShop: !e.target.wantShop.value
             })
         }
-    },[])
+    }, [])
 
-    const handleSubmission = e =>{
+    // useEffect(() => {
+    //     console.log("details.wantShop is: ", details.wantShop);
+    // }, [details.wantShop]);
+
+    const handleSubmission = e => {
         e.preventDefault();
-        console.log(details);
-        if(params.login == 'signup'){
+        console.log("Before register/Login api call", details);
+        if (params.login == 'signup') {
             //setLoader(previousState => !previousState);
 
             console.log("Before useDispatch ", signupWithEmailAndPassword);
-            dispatch (signupWithEmailAndPassword(details, data =>{
-                if(data.error){
-                    console.log("Error=> ",data.error)
+            dispatch(signupWithEmailAndPassword(details, data => {
+                if (data.error) {
+                    console.log("Error=> ", data.error)
                     alert("Some error occured")
-                }else{
+                } else {
                     console.log("Successfully sign up!")
                     history("/");
                 }
@@ -56,21 +62,21 @@ const AuthIndex = () => {
             }
             ))  // second parameter is callback function
         }
-        else if (params.login === "login"){
+        else if (params.login === "login") {
 
-            console.log("Before login Dispatch ",loginWithEmailAndPassword)
+            console.log("Before login Dispatch ", loginWithEmailAndPassword)
 
             dispatch(loginWithEmailAndPassword(details,
                 data => {
-                if(data.error){
-                    console.log(data.response)
-                    alert(data?.response?.data?.error?.message || "Some error occured" )
-                }else{
-                    console.log("Successfully Log In!")
-                    history("/");
-                }
-                //setLoader(previousState => !previousState);
-            })
+                    if (data.status==401) {
+                        console.log('data.status = 401 => ',data.response)
+                        alert(data?.response?.data?.error?.message || "Some error occured")
+                    } else {
+                        console.log("Successfully Log In!")
+                        history("/");
+                    }
+                    //setLoader(previousState => !previousState);
+                })
             )
         }
     }
@@ -86,23 +92,33 @@ const AuthIndex = () => {
                     <form autoComplete={"off"} onSubmit={handleSubmission}>
                         <div className="input-wrap">
                             <label htmlFor="email">Email</label>
-                            <input 
-                                type="text" 
-                                name="email" 
-                                placeholder="Enter Email" 
-                                value={details.email} 
+                            <input
+                                type="text"
+                                name="email"
+                                placeholder="Enter Email"
+                                value={details.email}
                                 onChange={handleInput}
                             />
                         </div>
                         <div className="input-wrap">
                             <label htmlFor="password">Password</label>
-                            <input 
-                                type="password" 
-                                name="password" 
-                                placeholder="Enter Password" 
+                            <input
+                                type="password"
+                                name="password"
+                                placeholder="Enter Password"
                                 value={details.password}
                                 onChange={handleInput}
                             />
+                        </div>
+                        <div className="form-check">
+                            <input className="form-check-input"
+                                type="checkbox"
+                                id="isShopkeeper"
+                                name="isShopkeeper"
+                                checked={details.wantShop}
+                                onChange={handleInput}
+                            />
+                            <label className="form-check-input-label" htmlFor="isShopkeeper">Want A Shop</label>
                         </div>
                         <div className="button-wrap">
                             <button className="login-btn">

@@ -32,16 +32,16 @@ const ListItem = ({ data, add_item , remove_item }) => {
     return (
         <Fragment>
             <div className={"col-sm-3"} onClick={handleModal}>
-                <img className={"img-fluid"} src={`/assets/${data.thumbnail}`} alt="some title" ></img> {/*  src={"/assets/"+data.thumbnail} */}
+                <img className={"img-fluid"} src={`/assets/${data.imagePath}`} alt="Img" ></img> {/*  src={"/assets/"+data.thumbnail} */}
                 <div className="item-card__information" >
                     <div className="pricing">
-                        <span>₹{data.discountedPrice}</span>
+                        <span>₹{data.unitPrice}</span>
                         <small>
-                            <strike>₹{data.price}</strike>
+                            <strike>₹{data.unitPrice}</strike>
                         </small>
                     </div>
                     <div className={"title"}>
-                        <h3>{data.title}</h3>
+                        <h3>{data.description}</h3>
                     </div>
                 </div>
                 {/* <button onClick={()=>updateItemTitle(data.id)} >Update the title</button> */}
@@ -67,7 +67,7 @@ const ListItem = ({ data, add_item , remove_item }) => {
                 <Modal onClose={handleModal}>
                     <div className="item-card__modal">
                         <div className="img-wrap">
-                            <img className="img-fluid" src={`/assets/${data.thumbnail}`} alt={data.title} />
+                            <img className="img-fluid" src={`/assets/${data.imagePath}`} alt={data.title} />
                         </div>
                     </div>
                     <div className="meta">

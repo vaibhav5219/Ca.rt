@@ -30,10 +30,13 @@ export const clearCartHandler = () => dispatch => {
 export const placeOrderhandler = (callback) => {
     return async (dispatch, getState) => {
         const {auth, cart} = getState()
+        const response=null;
         try 
         {
-            console.log("cart  => ",cart," user unique id =  auth.Id ", auth.localId)
-            if(!auth.localId)
+            console.log("cart in placeorderhandler  => ",JSON.stringify(cart))
+            console.log("auth in placeorderhandler  => ",auth)
+            console.log(" cart.items ==> ", JSON.stringify(cart.items))
+            if(!auth.token)
             {
                 return  callback({
                     error: true,
@@ -42,14 +45,14 @@ export const placeOrderhandler = (callback) => {
                     }
                 })
             }
-
-            const response = await axios.post(`https://react-cart-api-2023-default-rtdb.firebaseio.com/Orders/${auth.localId}.json?auth=${auth.idToken}`,{
-                ...cart
-            })
+            const post = cart.items
+            axios.defaults.headers.common = {'Authorization': `Bearer ${auth.token}`}
+            response = await axios.post("https://localhost:7223/api/orders/PlaceOrder"  //`https://react-cart-api-2023-default-rtdb.firebaseio.com/Orders/${auth.localId}.json?auth=${auth.idToken}`
+            ,post)
             dispatch({
                 type: "CLEAR_CART"
             })
-            console.log("auth =>",auth)
+            console.log("auth after post order api call =>",auth)
             console.log("getState => ",getState())
             console.log("cart => ",cart)
             console.log("Response =>",response)
@@ -59,6 +62,7 @@ export const placeOrderhandler = (callback) => {
             })
         }
         catch (error) {
+            console.log("Error in order api, response => ",response)
             console.log("Not authenticated - getState => ",getState())
 
             return callback({

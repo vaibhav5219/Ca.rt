@@ -1,14 +1,14 @@
 .checkout-modal {
     h2 {
         margin-top: 8px;
-        margin-bottom: 24px;
+        margin-bottom: 54px;
     }
 
     &_list {
         display: flex;
         flex-direction: column;
-        max-height: 400px;
-        min-height: 300px;
+        max-height: 100px;
+        min-height: 200px;
         overflow-y: auto;
 
         &-item {
@@ -19,6 +19,7 @@
             .img-wrap {
                 flex-basis: 20%;
                 max-width: 20%;
+                height: 50px;
             }
 
             .information {

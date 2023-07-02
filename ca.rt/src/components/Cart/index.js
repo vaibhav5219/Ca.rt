@@ -6,6 +6,7 @@ import CartItems from "../Cart/CartItems"
 import OrderSuccessModal from "../UI/OrderSuccess";
 import {useSelector,useDispatch, connect} from "react-redux";
 import { additemhandler, removeitemhandler, clearCartHandler, placeOrderhandler } from "../../actions";
+import AddToCartIcon from "../../../src/assets/icons/cart.png";
 
  const Cart = (
 //    {
@@ -75,11 +76,11 @@ import { additemhandler, removeitemhandler, clearCartHandler, placeOrderhandler 
 
     return (
         <>
-            <button className="cartItem" onClick={handleModal}>
-                <span data-items={items.length}>Cart</span>
-                <div className="">
-                    <img src={""} alt="Cart Icon" width={"20"} height={"20"}></img>
-                    <i data-count={items.length} className="fas fa-shopping-cart  icon-grey badge"><strong>Cart</strong></i>
+            <button className="cartItem btn btn-info" onClick={handleModal}>
+                {/* <span data-items={items.length}>Cart</span> */}
+                <div className="btn btn-outline-danger">
+                    <img src={AddToCartIcon} alt="Cart Icon" width={"20"} height={"20"}></img>
+                    <i data-count={items.length} className="fas fa-shopping-cart  icon-grey badge" style={{position:'inherit'}}><strong>Cart</strong></i>
                 </div>
             </button>
             {

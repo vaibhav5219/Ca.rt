@@ -33,9 +33,11 @@ const Products = () => {
                     slug += `?search=${queryParams}`
                 }
                 console.log("slug =>",slug)
-                const response = await axios.get(`https://react-cart-api-2023-default-rtdb.firebaseio.com/${slug}`);    // to avoid call back hell 
+                //const response = await axios.get(`https://react-cart-api-2023-default-rtdb.firebaseio.com/${slug}`);    // to avoid call back hell 
+                const response = await axios.get(`https://localhost:7223/api/products/GetProductsList`);
+
                 const data = response.data;
-                //console.log(slug)
+                console.log(data)
 
                 if(!data){
                     handleNotFound();
