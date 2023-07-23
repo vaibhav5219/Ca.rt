@@ -4,14 +4,14 @@ const User = () =>{
     const[isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(()=>{
-        const isTokenSet = localStorage.getItem("demo-token")
+        const isTokenSet = localStorage.getItem("token")
         setIsLoggedIn(isTokenSet)
         document.title = isTokenSet ? "Welcome User!" :"Please Log In"
     },[isLoggedIn]);
 
     const handleLogin = () =>{
         setIsLoggedIn(isLoggedIn => {
-            localStorage.setItem("demo-token",true);
+            localStorage.setItem("token",true);
             return (isLoggedIn, true);
         });
     };

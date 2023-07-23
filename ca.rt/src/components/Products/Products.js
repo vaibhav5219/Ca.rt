@@ -14,7 +14,6 @@ const Products = () => {
     const params = useParams()
     const history = useNavigate();
     const {search} = useLocation();
-    console.log("history => ",history)
     const queryParams = new URLSearchParams(search).get("search");
 
     const handleNotFound = () => {

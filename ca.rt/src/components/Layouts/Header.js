@@ -5,11 +5,13 @@ import SearchBox from "../UI/Search";
 import {useNavigate} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/auth";
+import store from '../../Store/index'
 
 const Header = ({count, items, onHandleEvent}) => {
     const history = useNavigate();
     const dispatch = useDispatch()
-
+    const state = store.getState()
+    console.log('State in Header --->>> ', state)
     const authState = useSelector(state => state.auth)
 
     const logoutHandler = () => {
@@ -26,18 +28,22 @@ const Header = ({count, items, onHandleEvent}) => {
                         <SearchBox></SearchBox>
                         
                     </div>
+                    <Cart count={count} AddToCartIcon={AddToCartIcon} items={items} onHandleEvent={onHandleEvent}></Cart>
                     <div className="login_button">
                         {
-                            authState && authState.idToken ? 
+                            authState && authState.token ? 
                             <div>
-                                <button className="btn btn-outline-danger">User Profile</button>
-                                <button onClick={logoutHandler} title="Logout" className="login-btn">Logout</button>
+                                <button className="btn btn-outline-danger">
+                                    {
+                                        state.Customer?.IsACustomer ?  state.Customer?.CustomerName : state.Shop?.ShopName 
+                                    }
+                                </button>
+                                <button onClick={logoutHandler} title="Logout" className="btn btn-outline-danger">Logout</button>
                             </div>
                             :
                             <button className="btn btn-outline-danger" onClick={() => history("/login")}>Login In</button>
                         }
                     </div>
-                    <Cart count={count} AddToCartIcon={AddToCartIcon} items={items} onHandleEvent={onHandleEvent}></Cart>
                 </div>
             </nav>
         </div>
