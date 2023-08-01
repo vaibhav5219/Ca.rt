@@ -162,7 +162,7 @@ const AuthIndex = () => {
                                             }
                                         })
                                         console.log(" ALL SHOP STATE SET")
-                                        history("/")
+                                        history("/Shop/ShopHome")
                                     }
                                     else {
                                         //console.log("before set state.auth.Role.IsAShop2  =>>>>>> ", state.auth.Role.IsAShopExists)

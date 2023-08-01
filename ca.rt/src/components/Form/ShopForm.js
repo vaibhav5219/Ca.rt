@@ -37,7 +37,7 @@ const ShopForm = () => {
             const response = await axios.post("https://localhost:7223/Api/ShopDetails/CreateShop",     //`${BASE_URL}/accounts:signInWithPassword?key=${API_KEY}`,
                 post);
 
-            console.log("Shop creation response.data ->  ",response.data)
+            console.log("Shop creation response.data ->  ", response.data)
             history('/')
         }
         catch (error) {
@@ -48,50 +48,53 @@ const ShopForm = () => {
 
     return (
         <>
-            <form onSubmit={handleSubmit} >
-                <div class="container mt-6" style={{ textAlign: "center" }}>
-                    <h4> Shop Form </h4>
-                    <div class="mb-6">
-                        <label for="ShopCode" class="form-label">Shop Code:
-                            <input type="text" name="ShopCode" class="form-control" id="ShopCode" value={props.ShopCode || ''} onChange={handleInput} />
-                        </label>
-                        {/* <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> */}
-                    </div>
-                    <div class="mb-6">
-                        <label for="ShopName" class="form-label">Shop Name:
-                            <input type="text" name="ShopName" class="form-control" id="ShopName" value={props.ShopName || ''} onChange={handleInput} />
-                        </label>
-                    </div>
 
-                    <div class="mb-6">
-                        <label for="ShopDomainName" class="form-label">Shop Domain Name:
-                            <input type="text" class="form-control" name="ShopDomainName" id="ShopDomainName" value={props.ShopDomainName || ''} onChange={handleInput} />
-                        </label>
-                    </div>
+            <div className="Row-6">
+                <form onSubmit={handleSubmit} >
+                    <div class="container mt-6" style={{ textAlign: "center" }}>
+                        <h4> Shop Form </h4>
+                        <div class="mb-6">
+                            <label for="ShopCode" class="form-label">Shop Code:
+                                <input type="text" name="ShopCode" class="form-control" id="ShopCode" value={props.ShopCode || ''} onChange={handleInput} />
+                            </label>
+                            {/* <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> */}
+                        </div>
+                        <div class="mb-6">
+                            <label for="ShopName" class="form-label">Shop Name:
+                                <input type="text" name="ShopName" class="form-control" id="ShopName" value={props.ShopName || ''} onChange={handleInput} />
+                            </label>
+                        </div>
 
-                    <div class="mb-6">
-                        <label for="ShopKeeperName" class="form-label">Shop ShopKeeper Name:
-                            <input type="text" class="form-control" name="ShopKeeperName" id="ShopKeeperName" value={props.ShopKeeperName || ''} onChange={handleInput} />
-                        </label>
-                    </div>
-                    <div class="mb-6">
-                        <label for="MobileNumber" class="form-label">Mobile Number:
-                            <input type="text" class="form-control" name="MobileNumber" id="MobileNumber" value={props.MobileNumber || ''} onChange={handleInput} />
-                        </label>
+                        <div class="mb-6">
+                            <label for="ShopDomainName" class="form-label">Shop Domain Name:
+                                <input type="text" class="form-control" name="ShopDomainName" id="ShopDomainName" value={props.ShopDomainName || ''} onChange={handleInput} />
+                            </label>
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="ShopKeeperName" class="form-label">Shop ShopKeeper Name:
+                                <input type="text" class="form-control" name="ShopKeeperName" id="ShopKeeperName" value={props.ShopKeeperName || ''} onChange={handleInput} />
+                            </label>
+                        </div>
+                        <div class="mb-6">
+                            <label for="MobileNumber" class="form-label">Mobile Number:
+                                <input type="text" class="form-control" name="MobileNumber" id="MobileNumber" value={props.MobileNumber || ''} onChange={handleInput} />
+                            </label>
+                        </div >
+                        <div class="mb-6">
+                            <label for="Address" class="form-label">Address:
+                                <input type="number" step={1} class="form-control" name="Address" id="Address" value={props.Address || ''} onChange={handleInput} />
+                            </label>
+                        </div>
+                        <div class="mb-6">
+                            <label for="PinCode" class="form-label">Pin Code:
+                                <input type="text" class="form-control" name="PinCode" id="PinCode" value={props.PinCode || ''} onChange={handleInput} />
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </div >
-                    <div class="mb-6">
-                        <label for="Address" class="form-label">Address:
-                            <input type="number" step={1} class="form-control" name="Address" id="Address" value={props.Address || ''} onChange={handleInput} />
-                        </label>
-                    </div>
-                    <div class="mb-6">
-                        <label for="PinCode" class="form-label">Pin Code:
-                            <input type="text" class="form-control" name="PinCode" id="PinCode" value={props.PinCode || ''} onChange={handleInput} />
-                        </label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div >
-            </form >
+                </form >
+            </div>
         </>
     )
 }

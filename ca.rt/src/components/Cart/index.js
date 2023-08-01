@@ -78,8 +78,8 @@ const Cart = (
             <button className="btn btn-outline-danger" onClick={handleModal}>
                 {/* <span data-items={items.length}>Cart</span> */}
 
-                <img src={AddToCartIcon} alt="Cart Icon" width={"20"} height={"20"}></img>
-                <i data-count={items.length} className="fas fa-shopping-cart  icon-grey badge" style={{ position: 'relative', width: '43px' }}><strong></strong></i>
+                {/* <img src={AddToCartIcon} alt="Cart Icon" width={"20"} height={"20"}></img> */}
+                <i data-count={items.length} className="fas fa-shopping-cart  icon-grey badge" style={{ position: 'relative', width: '63px' }}><strong></strong></i>
 
             </button>
             {
