@@ -16,6 +16,7 @@ import CustomerForm from './components/Form/CustomerForm';
 import ShopForm from './components/Form/ShopForm';
 import ShopProduct from './components/Shop/ShopProduct';
 import ShopCategory from './components/Shop/ShopCategory';
+import CustomerOrder from './components/Orders/CustomerOrder';
 
 function App() {
 
@@ -55,18 +56,22 @@ function App() {
           {
             !ShopState?.IsAShop &&
             <Route path='/' exact element={<Products />}> </Route>
-          }          
+          }
+          {
+            // !ShopState?.IsAShop && ShopState?.IsACustomer &&
+            <Route path='/Customer/CustomerOrder' exact element={<CustomerOrder />}> </Route>
+          }        
           {
             ShopState?.IsAShop &&
             <Route path='/Shop/ShopHome' exact element={<Shop />}> </Route>
           }
           {
             //ShopState?.IsAShop &&
-            <Route path='/Shop/ShopHome/ShopProduct' exact element={<ShopProduct/>}></Route>
+            <Route path='/Shop/ShopHome/ShopProduct' exact element={<Shop />}></Route>
           }
           {
             ShopState?.IsAShop &&
-            <Route path='/Shop/ShopHome/ShopCategory' exact element={<ShopCategory/>}></Route>
+            <Route path='/Shop/ShopHome/ShopCategory' exact element={<ShopCategory />}></Route>
           }
 
           {/* <Route path='/404' exact element={<h1>Page Not Found!</h1>}>

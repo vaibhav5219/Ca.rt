@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   CDBSidebar,
   CDBSidebarContent,
@@ -10,18 +11,20 @@ import {
 import { NavLink } from 'react-router-dom';
 
 const Sidebar = () => {
+  const ShopState = useSelector(state => state.Shop)
+
   return (
     <div style={{ display: 'flex', height: '100vh', overflow: 'scroll initial' }}>
       <CDBSidebar textColor="#fff" backgroundColor="#0dcaf0">  {/* #333 */}
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
-          <a href="/" className="text-decoration-none" style={{ color: 'inherit' }}>
-            SH.OP
+          <a href="/Shop/ShopHome" className="text-decoration-none" style={{ color: 'inherit' }}>
+          {ShopState.ShopCode}.SH.OP 
           </a>
         </CDBSidebarHeader>
 
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
-            <NavLink exact to="/" activeClassName="activeClicked">
+            <NavLink exact to="/Shop/ShopHome" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="columns">Your Orders</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/Shop/ShopHome/ShopProduct" activeClassName="activeClicked">

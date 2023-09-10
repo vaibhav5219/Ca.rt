@@ -26,7 +26,6 @@ const CustomerForm = (getState) => {
         
         try
         {
-
             //console.log(auth.token)
             axios.defaults.headers.common = {'Authorization': `Bearer ${token}`}
             console.log("Auth-> ",axios.defaults.headers)

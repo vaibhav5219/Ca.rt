@@ -1,12 +1,13 @@
-.form1{
+.form1 {
     display: flex;
     text-align: center;
     font-weight: bold;
 }
-input-field
-{
+
+.input-field {
     text-align: center;
 }
+
 .product-list {
     padding: 16px 32px;
     width: 100%;
@@ -18,7 +19,8 @@ input-field
         flex-wrap: wrap;
     }
 }
-button.cart-add:hover{
+
+button.cart-add:hover {
     color: green;
     background-color: bisque;
 }
@@ -59,6 +61,7 @@ button.cart-add:hover{
         font-weight: 400;
         margin-left: 8px;
     }
+
     span {
         font-size: 14px;
         font-weight: 500;
@@ -79,18 +82,21 @@ button.cart-add {
     align-items: center;
     width: 100%;
     justify-content: space-between;
-    background-color:  #17a2b8;
+    background-color: #17a2b8;
 }
 
 .cart-addon {
     margin-top: auto;
     display: flex;
+
     &__modal {
         margin-top: 8px;
     }
+
     // margin-top: 8px;
     justify-content: space-between;
     align-items: center;
+
     button {
         cursor: pointer;
         background-color: $primary;
@@ -100,8 +106,27 @@ button.cart-add {
         padding: 8px 12px;
         color: $white;
     }
+
     span.counter {
         font-weight: lighter;
         padding: 0 16px;
     }
+}
+
+.img-wrap {
+    overflow: hidden;
+}
+
+.img-wrap:hover img {
+    scale: 1.2;
+    transition: all ease 1;
+}
+
+.col-sm-3{
+    overflow: hidden;
+}
+
+.col-sm-3:hover img{
+    scale: 1.2;
+    transition: all ease 1;
 }

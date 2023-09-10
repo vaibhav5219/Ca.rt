@@ -2,6 +2,7 @@ import { combineReducers } from "redux";
 import authReducer from "./auth";
 import CustomerReducer from "./CustomerState";
 import ShopReducer from "./ShopState";
+import CustomerOrdersState from "./CustomerOrdersState";
 
 const mainReducer = (state = {
     items: [],
@@ -66,5 +67,6 @@ export default combineReducers({ // It's an function , takes object
     cart: mainReducer,
     auth: authReducer,
     Customer: CustomerReducer,
-    Shop: ShopReducer
+    Shop: ShopReducer,
+    CustomerOrdersState: CustomerOrdersState
 })

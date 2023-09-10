@@ -3,17 +3,18 @@ import SideBar from "./SideBar";
 import ShopProduct from "./ShopProduct";
 import ShopCategory from "./ShopCategory";
 
-function Shop() {
+function Shop(ProductKey, CategoryKey) {
 
     const YourOrders = null;
-    const Prouduct = null;
-    const Category = 1;
+    const Prouduct = ProductKey;
+    const Category = CategoryKey;
     const OrdersHistory = null;
     const ManageProfile = null;
     const ManageSHOP = null;
   
     return (
         <Fragment>
+            <div style={{display:"flex"}}>
                 <SideBar />
                 {
                     Category &&
@@ -39,6 +40,7 @@ function Shop() {
                     ManageSHOP &&
                     <ShopCategory />
                 }
+            </div>
         </Fragment>
     )
 }

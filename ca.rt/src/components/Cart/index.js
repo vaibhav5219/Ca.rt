@@ -7,6 +7,7 @@ import OrderSuccessModal from "../UI/OrderSuccess";
 import { useSelector, useDispatch, connect } from "react-redux";
 import { additemhandler, removeitemhandler, clearCartHandler, placeOrderhandler } from "../../actions";
 import AddToCartIcon from "../../../src/assets/icons/cart.png";
+import { useNavigate } from "react-router-dom";
 
 const Cart = (
     //    {
@@ -24,6 +25,7 @@ const Cart = (
     const totalAmount = useSelector(state => state.cart.totalAmount)
     const [orderId, setOrderId] = useState("")
     const dispatch = useDispatch()
+    const history = useNavigate()
 
     const handleModal = () => {
         setShowModal(previousState => !previousState);
@@ -37,18 +39,23 @@ const Cart = (
     }
 
     const orderHandler = (type, item) => {
+        //e.preventDefault();
         setShowModal(false)
         //dispatch(clearCartHandler())
         dispatch(placeOrderhandler(response => {
-            console.log("response in placeOrderhandler =>", response)
             if (response.error) {
                 alert(response.data.error || "Some error occured, please try again")
             }
             else {
-                console.log(response)
-                setOrderId(response.data.name)
+                //alert("Order placed successfully!")
+                console.log('Order placed successfully! ===>>>>',response)
+                setOrderId(response.data.map((o,ind) => { 
+                    let index = ind+1;
+                    return  ' '+ index +'. '+o
+                }))
                 setOrderModal(previous => !previous)
                 setShowModal(prev => !prev)
+                history('/')
             }
         }))
     }
@@ -79,7 +86,7 @@ const Cart = (
                 {/* <span data-items={items.length}>Cart</span> */}
 
                 {/* <img src={AddToCartIcon} alt="Cart Icon" width={"20"} height={"20"}></img> */}
-                <i data-count={items.length} className="fas fa-shopping-cart  icon-grey badge" style={{ position: 'relative', width: '63px' }}><strong></strong></i>
+                <i data-count={items?.length ? items.length : 0} className="fas fa-shopping-cart  icon-grey badge" style={{ position: 'relative', width: '63px' }}><strong></strong></i>
 
             </button>
             {
@@ -90,7 +97,7 @@ const Cart = (
                         <h2>Checkout Model</h2>
                         <div className="checkout-modal_list">
                             {
-                                items.length > 0
+                                items?.length > 0
                                     ?
                                     items.map(item => {
                                         return (
@@ -107,7 +114,7 @@ const Cart = (
 
                         </div>
                         {
-                            items.length > 0 &&
+                            items?.length > 0 &&
                             <div className="checkout-modal_footer">
                                 <div className="totalAmount">
                                     <h4>Total Amount</h4>

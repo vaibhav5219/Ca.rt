@@ -1,7 +1,8 @@
 const ShopReducer = (state = {
     IsAShop: 0,
     IsAShopExists: 0,
-    ShopName: ''
+    ShopName: '',
+    ShopCode: '',
 }, action) => {
     const { type, payload } = action
     console.log(type)
@@ -27,12 +28,19 @@ const ShopReducer = (state = {
                 ShopName: action.payload.data
             }
         }
+        case 'SHOPCODE': {
+            return {
+                ...state,
+                Shop: action.payload.data
+            }
+        }
         case 'CLEARSHOP': {
             //state.Role.IsACustomerExists = 1;
             return {
                 IsAShop: 0,
                 IsAShopExists: 0,
-                ShopName: ''
+                ShopName: '',
+                ShopCode: ''
             }
         }
         default: return state;
