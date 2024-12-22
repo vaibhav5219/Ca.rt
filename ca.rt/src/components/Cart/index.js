@@ -76,10 +76,10 @@ import { additemhandler, removeitemhandler, clearCartHandler, placeOrderhandler 
     return (
         <>
             <button className="cartItem" onClick={handleModal}>
-                <span data-items={items.length}>Cart</span>
+                {/* <span data-items={items.length}>Cart</span> */}
                 <div className="">
-                    <img src={""} alt="Cart Icon" width={"20"} height={"20"}></img>
-                    <i data-count={items.length} className="fas fa-shopping-cart  icon-grey badge"><strong>Cart</strong></i>
+                    <img src={`/assets/cart.png`} alt="Cart Icon" width={"40"} height={"30"}></img>
+                    <i data-count={items.length} className="fas fa-shopping-cart  icon-grey badge"><strong >Cart</strong></i>
                 </div>
             </button>
             {
